@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Performance & Feedback</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="">
+<div class="container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">floww</div>
+            <button class="toggle-btn" id="sidebarToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <nav>
+            <ul>
+                <li class="active"><a href="index.html"><i class="fa-solid fa-house"></i> <span class="nav-text">Home</span></a></li>
+                <li><a href=empmgmt/employee-management.html><i class="fa-solid fa-users"></i> <span class="nav-text">Employee Management</span></a></li>
+                <li><a href=tasks/tasks.html><i class="fa-solid fa-list-check"></i> <span class="nav-text">Tasks</span></a></li>
+                <li><a href=atten/attendence.html><i class="fa-solid fa-calendar-days"></i> <span class="nav-text">Attendance</span></a></li>
+                <li><a href=pay/pay.html><i class="fa-solid fa-money-bill-wave"></i> <span class="nav-text">Payroll</span></a></li>
+                <li><a href=perf/performance-reviews.html><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Performance Reviews</span></a></li>
+                <li><a href=feedb/feedback.html><i class="fa-solid fa-comments"></i> <span class="nav-text">Feedback</span></a></li>
+                <li><a href="devpl/development-plans.html"><i class="fa-solid fa-graduation-cap"></i> <span class="nav-text">Development Plans</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header>
+            <div class="top-bar">
+                <div class="breadcrumb">HRMS / Performance & Feedback</div>
+                <div class="search-bar">
+                    <input type="text" placeholder="<i class='fa-solid fa-magnifying-glass'></i> Search for anything here">
+                </div>
+                <div class="top-bar-actions">
+                    <button id="darkModeToggle" class="dark-mode-toggle">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <div class="user-profile">
+                        <span class="notification">
+                            <i class="fa-solid fa-bell" id="notificationBell"></i>
+                            <div class="notification-card" id="notificationCard">
+                                <h3>Notifications</h3>
+                                <div class="notification-item">New task assigned to you</div>
+                                <div class="notification-item">Leave request approved</div>
+                                <div class="notification-item">Performance review due soon</div>
+                                <a href="#" class="view-all">View All Notifications</a>
+                            </div>
+                        </span>
+                        <span class="avatar">IIT</span>
+                        <span class="username">IIT DHANBAD</span>
+                    </div>
+                </div>
+            </div>
+            <h2>Employee Performance & Feedback</h2>
+            <div class="welcome-section">
+                <div class="welcome-left">
+                    <img src=img/f1.jpeg alt="Organize Icon" class="welcome-icon">
+                    <div class="welcome-text">
+                        <h3>Welcome, HARIOM SHARNAM!</h3>
+                        <p>Organize your work and improve team performance.</p>
+                    </div>
+                </div>
+                <div class="dashboard-setup">
+                    <span>90% Dashboard Setup</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 90%;"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="overview-cards">
+            <div class="card">
+                <h3><i class="fa-solid fa-chart-line"></i> Performance Reviews</h3>
+                <p>Manage and track employee performance reviews.</p>
+                <a href="#" class="learn-more">View Reviews <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-comments"></i> Feedback Management</h3>
+                <p>Collect and analyze 360-degree feedback.</p>
+                <a href="#" class="learn-more">Go to Feedback <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <section class="activity-broadcast">
+            <div class="activity-log">
+                <h3><i class="fa-solid fa-clock-rotate-left"></i> Activity Log</h3>
+                <div class="log-item">Updated performance review for Arjun Kumar</div>
+                <div class="log-item">New feedback received for Akshat Kumar</div>
+                <div class="log-item">Goal completed by Sameer</div>
+            </div>
+            <div class="broadcast card">
+                <h3><i class="fa-solid fa-list-alt"></i> Summary</h3>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <span class="summary-value">10</span>
+                        <span class="summary-label">Pending Reviews</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-value">25</span>
+                        <span class="summary-label">New Feedback Items</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-value">8</span>
+                        <span class="summary-label">Completed Goals</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
