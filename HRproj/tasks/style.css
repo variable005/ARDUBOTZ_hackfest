@@ -1,0 +1,246 @@
+.tasks-header-actions {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.tasks-header-actions .filter-sort {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.tasks-header-actions label {
+    margin-right: 5px;
+    font-size: 14px;
+    color: var(--text-color-secondary);
+}
+
+.tasks-header-actions select {
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: var(--bg-color-secondary);
+    color: var(--text-color-primary);
+    transition: border-color var(--transition-duration) var(--transition-easing), background-color var(--transition-duration) var(--transition-easing), color var(--transition-duration) var(--transition-easing);
+}
+
+.tasks-header-actions select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+.task-list {
+    background-color: var(--bg-color-secondary);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    margin-top: 20px;
+}
+
+body.dark-mode .task-list {
+    background-color: #252729;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.tasks-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--text-color-primary);
+}
+
+.tasks-table th, .tasks-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+body.dark-mode .tasks-table th,
+body.dark-mode .tasks-table td {
+    border-bottom-color: #444;
+    color: var(--text-color-secondary);
+}
+
+.tasks-table th {
+    background-color: #f8f8f8;
+    font-weight: 600;
+}
+
+body.dark-mode .tasks-table th {
+    background-color: #333;
+    color: var(--secondary-color);
+}
+
+.tasks-table tr:last-child td {
+    border-bottom: none;
+}
+
+.task-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.task-status.to-do {
+    background-color: #fce4ec;
+    color: #e91e63;
+}
+
+.task-status.in-progress {
+    background-color: #e3f2fd;
+    color: var(--secondary-color);
+}
+
+.task-status.completed {
+    background-color: #e8f5e9;
+    color: #388e3c;
+}
+
+.task-status.overdue {
+    background-color: #ffebee;
+    color: #d32f2f;
+}
+
+.priority {
+    font-weight: 600;
+}
+
+.priority.high {
+    color: #d32f2f;
+}
+
+.priority.medium {
+    color: #ed6c02;
+}
+
+.priority.low {
+    color: #388e3c;
+}
+
+.button.primary {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color var(--transition-duration) var(--transition-easing);
+}
+
+.button.primary:hover {
+    background-color: #0288d1;
+}
+
+.button.small {
+    padding: 5px 8px;
+    font-size: 12px;
+    margin-right: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color-secondary);
+    color: var(--text-color-primary);
+    transition: background-color var(--transition-duration) var(--transition-easing), color var(--transition-duration) var(--transition-easing), border-color var(--transition-duration) var(--transition-easing);
+}
+
+.button.small:hover {
+    background-color: #ddd;
+}
+
+body.dark-mode .button.small {
+    background-color: #2c2c2c;
+    color: var(--text-color-secondary);
+    border-color: #444;
+}
+
+body.dark-mode .button.small:hover {
+    background-color: #444;
+    color: #eee;
+}
+
+.top-bar-actions .user-profile .notification {
+    position: relative;
+    display: inline-block;
+}
+
+.top-bar-actions .user-profile .notification .fa-bell {
+    cursor: pointer;
+    font-size: 1.2em; /* adjust as needed */
+}
+
+.top-bar-actions .user-profile .notification .notification-card {
+    position: absolute;
+    top: calc(100% + 10px); /* position below bell */
+    right: 0; /* aligns to right of bell */
+    background-color: var(--bg-color-secondary);
+    color: var(--text-color-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    padding: 15px;
+    z-index: 1000;
+    width: 300px; /* adjust as needed */
+    display: none;
+}
+
+body.dark-mode .top-bar-actions .user-profile .notification .notification-card {
+    background-color: #252729;
+    color: var(--text-color-secondary);
+    border-color: #444;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.top-bar-actions .user-profile .notification .notification-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+}
+
+body.dark-mode .top-bar-actions .user-profile .notification .notification-card h3 {
+    border-color: #444;
+}
+
+.top-bar-actions .user-profile .notification .notification-card .notification-item {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9em;
+}
+
+body.dark-mode .top-bar-actions .user-profile .notification .notification-card .notification-item {
+    border-color: #444;
+}
+
+.top-bar-actions .user-profile .notification .notification-card .notification-item:last-child {
+    border-bottom: none;
+}
+
+.top-bar-actions .user-profile .notification .notification-card .view-all {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.85em;
+}
+
+.top-bar-actions .user-profile .notification .notification-card .view-all:hover {
+    text-decoration: underline;
+}
+
+body.dark-mode .top-bar-actions .user-profile .notification .notification-card .view-all {
+    color: var(--secondary-color);
+}
+
+/* class to show notifs */
+.show-notifications {
+    display: block !important;
+}
