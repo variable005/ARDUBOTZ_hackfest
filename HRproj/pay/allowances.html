@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Allowances</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="allowances.css"> <link rel="stylesheet" href="allowances.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="">
+<div class="container">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">floww</div>
+      <button class="toggle-btn" id="sidebarToggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html"><i class="fa-solid fa-house"></i> <span class="nav-text">Home</span></a></li>
+        <li><a href="../empmgmt/employee-management.html"><i class="fa-solid fa-users"></i> <span class="nav-text">Employee Management</span></a></li>
+        <li><a href="../tasks/tasks.html"><i class="fa-solid fa-list-check"></i> <span class="nav-text">Tasks</span></a></li>
+        <li><a href="../atten/attendence.html"><i class="fa-solid fa-calendar-days"></i> <span class="nav-text">Attendance</span></a></li>
+        <li class="active"><a href="../pay/pay.html"><i class="fa-solid fa-money-bill-wave"></i> <span class="nav-text">Payroll</span></a></li>
+        <li><a href="../perf/performance-reviews.html"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Performance Reviews</span></a></li>
+        <li><a href="../feedb/feedback.html"><i class="fa-solid fa-comments"></i> <span class="nav-text">Feedback</span></a></li>
+        <li><a href="../devpl/development-plans.html"><i class="fa-solid fa-graduation-cap"></i> <span class="nav-text">Development Plans</span></a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header>
+      <div class="top-bar">
+        <div class="breadcrumb">HRMS / Payroll / Allowances</div>
+        <div class="top-bar-actions">
+          <button id="darkModeToggle" class="dark-mode-toggle">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <div class="user-profile">
+                        <span class="notification">
+                            <i class="fa-solid fa-bell" id="notificationBell"></i>
+                            <div class="notification-card" id="notificationCard">
+                                <h3>Notifications</h3>
+                                <div class="notification-item">New task assigned to you</div>
+                                <div class="notification-item">Leave request approved</div>
+                                <div class="notification-item">Performance review due soon</div>
+                                <a href="#" class="view-all">View All Notifications</a>
+                            </div>
+                        </span>
+            <span class="avatar">IIT</span>
+            <span class="username">IIT DHANBAD</span>
+          </div>
+        </div>
+      </div>
+      <h2>Allowances</h2>
+    </header>
+
+    <section class="allowance-list">
+      <div class="card">
+        <h3><i class="fa-solid fa-hand-holding-dollar"></i> Company Provided Allowances</h3>
+        <table class="task-table"> <thead>
+        <tr>
+          <th>Allowance Name</th>
+          <th>Description</th>
+          <th>Amount/Percentage</th>
+          <th>Eligibility Criteria</th>
+          <th>Taxability</th>
+        </tr>
+        </thead>
+          <tbody>
+          <tr>
+            <td>House Rent Allowance (HRA)</td>
+            <td>To help employees with accommodation expenses.</td>
+            <td>₹ 10,000 per month or 40% of basic salary (whichever is lower, as per policy)</td>
+            <td>All confirmed employees residing in rented accommodation.</td>
+            <td>Partially Taxable</td>
+          </tr>
+          <tr>
+            <td>Travel Allowance (TA)</td>
+            <td>To cover expenses incurred during official travel.</td>
+            <td>₹ 200 per day for local travel; Actuals for outstation travel (as per policy)</td>
+            <td>Employees on official duty requiring travel.</td>
+            <td>Generally Non-Taxable (up to certain limits)</td>
+          </tr>
+          <tr>
+            <td>Dearness Allowance (DA)</td>
+            <td>To mitigate the impact of inflation.</td>
+            <td>15% of basic salary (subject to change based on government regulations)</td>
+            <td>All confirmed employees.</td>
+            <td>Fully Taxable</td>
+          </tr>
+          <tr>
+            <td>Medical Allowance</td>
+            <td>To help with medical expenses.</td>
+            <td>₹ 2,000 per month</td>
+            <td>All confirmed employees.</td>
+            <td>Taxable</td>
+          </tr>
+          <tr>
+            <td>Leave Travel Allowance (LTA)</td>
+            <td>To support employees' travel during leave periods.</td>
+            <td>Reimbursement of actual travel cost for self and family (twice in a block of four years, as per policy)</td>
+            <td>Confirmed employees who have completed one year of service.</td>
+            <td>Non-Taxable (subject to certain conditions)</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="../script.js"></script>
+</body>
+</html>
