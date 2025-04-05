@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Task</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="add_tasks.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="loaded">
+<div class="container">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">floww</div>
+      <button class="toggle-btn" id="sidebarToggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html"><i class="fa-solid fa-house"></i> <span class="nav-text">Home</span></a></li>
+        <li><a href="../empmgmt/employee-management.html"><i class="fa-solid fa-users"></i> <span class="nav-text">Employee Management</span></a></li>
+        <li class="active"><a href="../tasks/tasks.html"><i class="fa-solid fa-list-check"></i> <span class="nav-text">Tasks</span></a></li>
+        <li><a href="../atten/attendence.html"><i class="fa-solid fa-calendar-days"></i> <span class="nav-text">Attendance</span></a></li>
+        <li><a href="../pay/pay.html"><i class="fa-solid fa-money-bill-wave"></i> <span class="nav-text">Payroll</span></a></li>
+        <li><a href="../perf/performance-reviews.html"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Performance Reviews</span></a></li>
+        <li><a href="../feedb/feedback.html"><i class="fa-solid fa-comments"></i> <span class="nav-text">Feedback</span></a></li>
+        <li><a href="../devpl/development-plans.html"><i class="fa-solid fa-graduation-cap"></i> <span class="nav-text">Development Plans</span></a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header>
+      <div class="top-bar">
+        <div class="breadcrumb">HRMS / Tasks / Add Task</div>
+        <div class="top-bar-actions">
+          <button id="darkModeToggle" class="dark-mode-toggle">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <div class="user-profile">
+                        <span class="notification">
+                            <i class="fa-solid fa-bell" id="notificationBell"></i>
+                            <div class="notification-card" id="notificationCard">
+                                <h3>Notifications</h3>
+                                <div class="notification-item">New task assigned to you</div>
+                                <div class="notification-item">Leave request approved</div>
+                                <div class="notification-item">Performance review due soon</div>
+                                <a href="#" class="view-all">View All Notifications</a>
+                            </div>
+                        </span>
+            <span class="avatar">IIT</span>
+            <span class="username">IIT DHANBAD</span>
+          </div>
+        </div>
+      </div>
+      <h2>Add Task</h2>
+    </header>
+
+    <div class="feedback-actions">
+      <div class="card">
+        <h3><i class="fa-solid fa-plus-square"></i> Add New Task</h3>
+        <form class="request-form add-task-form">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" placeholder="Enter task title" required>
+          </div>
+          <div class="form-group">
+            <label for="assignee">Assignee:</label>
+            <input type="text" id="assignee" name="assignee" placeholder="Assign to employee" required>
+          </div>
+          <div class="form-group">
+            <label for="due_date">Due Date:</label>
+            <input type="date" id="due_date" name="due_date" required>
+          </div>
+          <div class="form-group">
+            <label for="priority">Priority:</label>
+            <select id="priority" name="priority">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+              <option value="to_do">To Do</option>
+              <option value="in_progress">In Progress</option>
+              <option value="done">Done</option>
+              <option value="on_hold">On Hold</option>
+              <option value="overdue">Overdue</option>
+            </select>
+          </div>
+          <button type="submit" class="button primary"><i class="fa-solid fa-plus-square"></i> Add Task</button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Load Firebase SDKs with defer -->
+<script defer src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
+
+<!-- Firebase initialization -->
+<script defer>
+  document.addEventListener('DOMContentLoaded', function() {
+    const firebaseConfig = {
+      apiKey: "AIzaSyCZaXglLNz37Z5wGzPsbFOGuV7ubAw5tlY",
+      authDomain: "trial1-d6513.firebaseapp.com",
+      projectId: "trial1-d6513",
+      storageBucket: "trial1-d6513.firebasestorage.app",
+      messagingSenderId: "278281297726",
+      appId: "1:278281297726:web:dbdcbc985349cd6476966f"
+    };
+
+    if (window.firebase) {
+      firebase.initializeApp(firebaseConfig);
+      window.db = firebase.firestore();
+    } else {
+      console.error("Firebase SDK not loaded.");
+    }
+  });
+</script>
+
+<!-- External script that uses db -->
+<script defer src="../script.js"></script>
+</body>
+</html>
