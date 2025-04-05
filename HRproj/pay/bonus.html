@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bonus Received</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="bonus.css"> <link rel="stylesheet" href="bonus_received.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="">
+<div class="container">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">floww</div>
+      <button class="toggle-btn" id="sidebarToggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html"><i class="fa-solid fa-house"></i> <span class="nav-text">Home</span></a></li>
+        <li><a href="../empmgmt/employee-management.html"><i class="fa-solid fa-users"></i> <span class="nav-text">Employee Management</span></a></li>
+        <li><a href="../tasks/tasks.html"><i class="fa-solid fa-list-check"></i> <span class="nav-text">Tasks</span></a></li>
+        <li><a href="../atten/attendence.html"><i class="fa-solid fa-calendar-days"></i> <span class="nav-text">Attendance</span></a></li>
+        <li class="active"><a href="../pay/pay.html"><i class="fa-solid fa-money-bill-wave"></i> <span class="nav-text">Payroll</span></a></li>
+        <li><a href="../perf/performance-reviews.html"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Performance Reviews</span></a></li>
+        <li><a href="../feedb/feedback.html"><i class="fa-solid fa-comments"></i> <span class="nav-text">Feedback</span></a></li>
+        <li><a href="../devpl/development-plans.html"><i class="fa-solid fa-graduation-cap"></i> <span class="nav-text">Development Plans</span></a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header>
+      <div class="top-bar">
+        <div class="breadcrumb">HRMS / Payroll / Bonus Received</div>
+        <div class="top-bar-actions">
+          <button id="darkModeToggle" class="dark-mode-toggle">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <div class="user-profile">
+                        <span class="notification">
+                            <i class="fa-solid fa-bell" id="notificationBell"></i>
+                            <div class="notification-card" id="notificationCard">
+                                <h3>Notifications</h3>
+                                <div class="notification-item">New task assigned to you</div>
+                                <div class="notification-item">Leave request approved</div>
+                                <div class="notification-item">Performance review due soon</div>
+                                <a href="#" class="view-all">View All Notifications</a>
+                            </div>
+                        </span>
+            <span class="avatar">HS</span>
+            <span class="username">Hariom Sharnam</span>
+          </div>
+        </div>
+      </div>
+      <h2>Bonus Received</h2>
+    </header>
+
+    <section class="bonus-list">
+      <div class="card">
+        <h3><i class="fa-solid fa-gift"></i> Bonus Payments Received</h3>
+        <table class="task-table"> <thead>
+        <tr>
+          <th>Employee Name</th>
+          <th>Employee ID</th>
+          <th>Bonus Name</th>
+          <th>Bonus Amount</th>
+          <th>Received Date</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+          <tbody>
+          <tr>
+            <td>Ruhi Kumari</td>
+            <td>EMP001</td>
+            <td>Performance Bonus Q1 2025</td>
+            <td>₹500.00</td>
+            <td>2025-03-15</td>
+            <td>Paid</td>
+          </tr>
+          <tr>
+            <td>Lokesh Mehta</td>
+            <td>EMP002</td>
+            <td>Year-End Bonus 2024</td>
+            <td>₹1,200.00</td>
+            <td>2024-12-20</td>
+            <td>Paid</td>
+          </tr>
+          <tr>
+            <td>Anuj Sharma</td>
+            <td>EMP003</td>
+            <td>Project Completion Bonus - Alpha</td>
+            <td>₹300.00</td>
+            <td>2025-02-10</td>
+            <td>Paid</td>
+          </tr>
+          <tr>
+            <td>Kirti Kumari</td>
+            <td>EMP004</td>
+            <td>Spot Bonus - Innovation</td>
+            <td>₹100.00</td>
+            <td>2025-03-01</td>
+            <td>Paid</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="../script.js"></script>
+</body>
+</html>
