@@ -11,11 +11,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ... (Your existing CSS) ... */
         .calendar-container {
             width: 100%;
             border: 1px solid #ccc;
             border-radius: 8px;
             overflow: hidden;
+            margin-top: 15px; /* Added margin for spacing */
         }
 
         .calendar-header {
@@ -96,6 +98,24 @@
         .leave {
             background-color: #ffb74d; /* Light orange */
         }
+
+        .filter-section {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filter-section label {
+            font-weight: bold;
+        }
+
+        .filter-section select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 200px; /* Adjust width as needed */
+        }
     </style>
 </head>
 <body class="loaded">
@@ -143,8 +163,8 @@
                             <a href="#" class="view-all">View All Notifications</a>
                         </div>
                     </span>
-                        <span class="avatar">HS</span>
-                        <span class="username">Hariom Sharnam</span>
+                        <span class="avatar">IIT</span>
+                        <span class="username">IIT DHANBAD</span>
                     </div>
                 </div>
             </div>
@@ -154,24 +174,24 @@
         <section class="attendance-overview">
             <div class="card">
                 <h3><i class="fa-solid fa-user-clock"></i> Today's Status</h3>
-                <p id="todaysAttendanceStatus">Not Checked In</p>
-                <button class="button primary" id="checkInOutButton">Check In</button>
+                <p id="todaysAttendanceStatus">--</p>
+                <p>This reflects the status for the currently selected employee.</p>
             </div>
             <div class="card">
                 <h3><i class="fa-regular fa-hourglass-half"></i> Total Hours Worked (This Month)</h3>
-                <p>0 Hours</p>
+                <p id="totalHoursWorked">--</p>
             </div>
             <div class="card">
                 <h3><i class="fa-regular fa-calendar-check"></i> Present Days (This Month)</h3>
-                <p id="presentDays">0 Days</p>
+                <p id="presentDays">--</p>
             </div>
             <div class="card">
                 <h3><i class="fa-regular fa-calendar-xmark"></i> Absent Days (This Month)</h3>
-                <p id="absentDays">0 Days</p>
+                <p id="absentDays">--</p>
             </div>
             <div class="card">
                 <h3><i class="fa-regular fa-envelope"></i> Paid Leaves Left</h3>
-                <p>0 Days</p>
+                <p id="paidLeavesLeft">--</p>
             </div>
             <div class="card">
                 <h3><i class="fa-regular fa-envelope"></i> Mail Option</h3>
@@ -180,15 +200,32 @@
             <div class="card">
                 <h3><i class="fa-regular fa-calendar"></i> Company Holidays</h3>
                 <ul id="companyHolidaysList">
-                    <li>[Date] - [Holiday Name]</li>
-                    <li>[Date] - [Holiday Name]</li>
-                    <li>[Date] - [Holiday Name]</li>
+                    <li>2025-04-10 - Ram Navami</li>
+                    <li>2025-04-14 - Bengali New Year</li>
                 </ul>
             </div>
         </section>
 
         <section class="attendance-calendar">
             <h3><i class="fa-regular fa-calendar"></i> Attendance Calendar</h3>
+            <div class="filter-section">
+                <label for="department-dropdown">Department:</label>
+                <select id="department-dropdown">
+                    <option value="">All Departments</option>
+                </select>
+            </div>
+            <div class="filter-section">
+                <label for="designation-dropdown">Designation:</label>
+                <select id="designation-dropdown">
+                    <option value="">All Designations</option>
+                </select>
+            </div>
+            <div class="filter-section">
+                <label for="employee-dropdown">Employee:</label>
+                <select id="employee-dropdown">
+                    <option value="">Select Employee</option>
+                </select>
+            </div>
             <div class="calendar-placeholder">
                 <div class="calendar-container">
                     <div class="calendar-header">
@@ -230,19 +267,86 @@
     const currentMonthYear = document.getElementById('currentMonthYear');
     const prevMonthBtn = document.getElementById('prevMonth');
     const nextMonthBtn = document.getElementById('nextMonth');
+    const departmentDropdown = document.getElementById('department-dropdown');
+    const designationDropdown = document.getElementById('designation-dropdown');
+    const employeeDropdown = document.getElementById('employee-dropdown');
 
     const todaysAttendanceStatus = document.getElementById('todaysAttendanceStatus');
-    const checkInOutButton = document.getElementById('checkInOutButton');
+    const totalHoursWorkedElement = document.getElementById('totalHoursWorked');
     const presentDaysElement = document.getElementById('presentDays');
     const absentDaysElement = document.getElementById('absentDays');
-    const companyHolidaysList = document.getElementById('companyHolidaysList');
+    const paidLeavesLeftElement = document.getElementById('paidLeavesLeft');
 
     let currentDate = new Date();
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
-    let attendanceData = {}; // Object to store attendance status for each date (YYYY-MM-DD: 'present'/'absent'/'leave')
+    let selectedEmployeeId = employeeDropdown.value;
+    let filteredEmployees = [];
 
-    function updateOverview() {
+    // Sample employee data with Indian names, departments, and designations
+    const employees = [
+        { id: '1', name: 'Priya Sharma', designation: 'Software Engineer', department: 'Technology' },
+        { id: '2', name: 'Rahul Verma', designation: 'HR Manager', department: 'Human Resources' },
+        { id: '3', name: 'Sneha Gupta', designation: 'Sales Associate', department: 'Sales' },
+        { id: '4', name: 'Amit Patel', designation: 'Software Engineer', department: 'Technology' },
+        { id: '5', name: 'Divya Singh', designation: 'Marketing Specialist', department: 'Marketing' },
+        { id: '6', name: 'Vikram Kapoor', designation: 'Sales Manager', department: 'Sales' },
+        { id: '7', name: 'Anjali Yadav', designation: 'HR Associate', department: 'Human Resources' },
+        { id: '8', name: 'Rohan Mehra', designation: 'Software Tester', department: 'Technology' },
+        { id: '9', name: 'Kavita Nair', designation: 'Marketing Manager', department: 'Marketing' },
+    ];
+
+    // Sample attendance data (replace with API call in real app)
+    let attendanceData = {
+        '1': { '2025-04-01': 'present', '2025-04-02': 'present', '2025-04-03': 'absent' },
+        '2': { '2025-04-04': 'present', '2025-04-05': 'present' },
+        '3': {},
+        '4': { '2025-04-01': 'leave' },
+        '5': { '2025-04-07': 'present' },
+        '6': {},
+        '7': { '2025-04-10': 'absent' },
+        '8': { '2025-04-15': 'present' },
+        '9': {}
+    };
+
+    function populateDropdown(dropdown, items) {
+        dropdown.innerHTML = '<option value="">All</option>';
+        const uniqueItems = [...new Set(items)];
+        uniqueItems.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item;
+            option.textContent = item;
+            dropdown.appendChild(option);
+        });
+    }
+
+    function filterEmployees(department, designation) {
+        return employees.filter(emp =>
+            (department === "" || emp.department === department) &&
+            (designation === "" || emp.designation === designation)
+        );
+    }
+
+    function populateEmployeeDropdown(employeesList) {
+        employeeDropdown.innerHTML = '<option value="">Select Employee</option>';
+        employeesList.forEach(employee => {
+            const option = document.createElement('option');
+            option.value = employee.id;
+            option.textContent = `${employee.name} (${employee.designation}, ${employee.department})`;
+            employeeDropdown.appendChild(option);
+        });
+    }
+
+    function updateOverview(employeeId) {
+        if (!employeeId || !attendanceData[employeeId]) {
+            todaysAttendanceStatus.textContent = '--';
+            totalHoursWorkedElement.textContent = '--';
+            presentDaysElement.textContent = '--';
+            absentDaysElement.textContent = '--';
+            paidLeavesLeftElement.textContent = '--';
+            return;
+        }
+
         let presentCount = 0;
         let absentCount = 0;
         const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
@@ -250,35 +354,30 @@
 
         for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
             const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
-            if (attendanceData[dateStr] === 'present') {
+            if (attendanceData[employeeId][dateStr] === 'present') {
                 presentCount++;
-            } else if (attendanceData[dateStr] === 'absent') {
+            } else if (attendanceData[employeeId][dateStr] === 'absent') {
                 absentCount++;
             }
         }
 
         presentDaysElement.textContent = `${presentCount} Days`;
         absentDaysElement.textContent = `${absentCount} Days`;
+        totalHoursWorkedElement.textContent = 'Calculating...'; // Replace with actual calculation
 
-        // Update today's status (you might want to fetch this from the server)
         const todayFormatted = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`;
-        if (attendanceData[todayFormatted]) {
-            todaysAttendanceStatus.textContent = attendanceData[todayFormatted].charAt(0).toUpperCase() + attendanceData[todayFormatted].slice(1);
-            checkInOutButton.textContent = attendanceData[todayFormatted] === 'present' ? 'Check Out' : 'Check In';
-        } else {
-            todaysAttendanceStatus.textContent = 'Not Checked In';
-            checkInOutButton.textContent = 'Check In';
-        }
-
-        // Update company holidays (replace with your actual data)
-        const holidays = [
-            { date: '2025-04-10', name: 'Ram Navami' },
-            { date: '2025-04-14', name: 'Bengali New Year' }
-        ];
-        companyHolidaysList.innerHTML = holidays.map(holiday => `<li>${holiday.date} - ${holiday.name}</li>`).join('');
+        todaysAttendanceStatus.textContent = attendanceData[employeeId][todayFormatted]?.charAt(0).toUpperCase() + attendanceData[employeeId][todayFormatted]?.slice(1) || 'Not Available';
+        paidLeavesLeftElement.textContent = 'Calculating...'; // Replace with actual data
     }
 
-    function renderCalendar(month, year) {
+    function renderCalendar(month, year, employeeId) {
+        if (!employeeId) {
+            calendarBody.innerHTML = '';
+            currentMonthYear.textContent = new Date(year, month).toLocaleString('default', { month: 'long', year: 'numeric' });
+            updateOverview(employeeId);
+            return;
+        }
+
         const firstDayOfMonth = new Date(year, month, 1);
         const lastDayOfMonth = new Date(year, month + 1, 0);
         const daysInMonth = lastDayOfMonth.getDate();
@@ -308,7 +407,7 @@
                         dayClass = 'today';
                     }
 
-                    const attendanceStatus = attendanceData[currentDateFormatted];
+                    const attendanceStatus = attendanceData[employeeId] && attendanceData[employeeId][currentDateFormatted];
                     let statusIndicator = '';
                     if (attendanceStatus === 'present') {
                         statusIndicator = '<div class="attendance-status present">P</div>';
@@ -336,27 +435,40 @@
             if (!cell.classList.contains('other-month')) {
                 cell.addEventListener('click', function() {
                     const dateClicked = this.getAttribute('data-date');
-                    if (dateClicked) {
-                        // Basic toggle through attendance statuses
-                        if (!attendanceData[dateClicked]) {
-                            attendanceData[dateClicked] = 'present';
-                        } else if (attendanceData[dateClicked] === 'present') {
-                            attendanceData[dateClicked] = 'absent';
-                        } else if (attendanceData[dateClicked] === 'absent') {
-                            attendanceData[dateClicked] = 'leave';
-                        } else if (attendanceData[dateClicked] === 'leave') {
-                            delete attendanceData[dateClicked]; // Reset
+                    if (dateClicked && selectedEmployeeId) {
+                        const currentStatus = attendanceData[selectedEmployeeId]?.[dateClicked];
+                        let newStatus;
+                        if (!currentStatus) {
+                            newStatus = 'present';
+                        } else if (currentStatus === 'present') {
+                            newStatus = 'absent';
+                        } else if (currentStatus === 'absent') {
+                            newStatus = 'leave';
+                        } else if (currentStatus === 'leave') {
+                            delete attendanceData[selectedEmployeeId][dateClicked]; // Reset
+                            newStatus = null;
                         }
-                        renderCalendar(currentMonth, currentYear); // Re-render to update the visual
-                        updateOverview();
+
+                        if (!attendanceData[selectedEmployeeId]) {
+                            attendanceData[selectedEmployeeId] = {};
+                        }
+                        if (newStatus) {
+                            attendanceData[selectedEmployeeId][dateClicked] = newStatus;
+                        } else {
+                            delete attendanceData[selectedEmployeeId][dateClicked];
+                        }
+
+                        renderCalendar(currentMonth, currentYear, selectedEmployeeId); // Re-render to update the visual
+                        updateOverview(selectedEmployeeId);
                         // In a real application, you would send this updated attendanceData to your backend
-                        console.log('Attendance Data:', attendanceData);
+                        console.log(`Attendance for employee ${selectedEmployeeId} on ${dateClicked}:`, newStatus || 'No Status');
+                        console.log('Updated Attendance Data:', attendanceData);
                     }
                 });
             }
         });
 
-        updateOverview(); // Update the overview section after rendering the calendar
+        updateOverview(employeeId); // Update the overview section after rendering the calendar
     }
 
     function prevMonth() {
@@ -365,7 +477,7 @@
             currentMonth = 11;
             currentYear--;
         }
-        renderCalendar(currentMonth, currentYear);
+        renderCalendar(currentMonth, currentYear, selectedEmployeeId);
     }
 
     function nextMonth() {
@@ -374,25 +486,45 @@
             currentMonth = 0;
             currentYear++;
         }
-        renderCalendar(currentMonth, currentYear);
+        renderCalendar(currentMonth, currentYear, selectedEmployeeId);
     }
 
+    // Event listeners for month navigation
     prevMonthBtn.addEventListener('click', prevMonth);
     nextMonthBtn.addEventListener('click', nextMonth);
 
-    checkInOutButton.addEventListener('click', function() {
-        const todayFormatted = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`;
-        if (todaysAttendanceStatus.textContent === 'Not Checked In' || todaysAttendanceStatus.textContent === 'Absent' || todaysAttendanceStatus.textContent === 'Leave') {
-            attendanceData[todayFormatted] = 'present';
-        } else if (todaysAttendanceStatus.textContent === 'Present') {
-            delete attendanceData[todayFormatted]; // Simulate check-out by removing status
-        }
-        renderCalendar(currentMonth, currentYear);
-        updateOverview();
+    // Populate department and designation dropdowns
+    const departments = employees.map(emp => emp.department);
+    populateDropdown(departmentDropdown, departments);
+
+    const designations = employees.map(emp => emp.designation);
+    populateDropdown(designationDropdown, designations);
+
+    // Function to handle filter changes
+    function handleFilterChange() {
+        const selectedDepartment = departmentDropdown.value;
+        const selectedDesignation = designationDropdown.value;
+        filteredEmployees = filterEmployees(selectedDepartment, selectedDesignation);
+        populateEmployeeDropdown(filteredEmployees);
+        selectedEmployeeId = employeeDropdown.value; // Reset selected employee
+        renderCalendar(currentMonth, currentYear, selectedEmployeeId);
+    }
+
+    // Event listeners for filter changes
+    departmentDropdown.addEventListener('change', handleFilterChange);
+    designationDropdown.addEventListener('change', handleFilterChange);
+
+    // Event listener for employee selection
+    employeeDropdown.addEventListener('change', function() {
+        selectedEmployeeId = this.value;
+        renderCalendar(currentMonth, currentYear, selectedEmployeeId);
+        updateOverview(selectedEmployeeId);
     });
 
-    // Initial calendar render
-    renderCalendar(currentMonth, currentYear);
+    // Initial population of employee dropdown based on no filters
+    populateEmployeeDropdown(employees);
+    selectedEmployeeId = employeeDropdown.value;
+    renderCalendar(currentMonth, currentYear, selectedEmployeeId);
 </script>
 <script src="../script.js"></script>
 </body>
