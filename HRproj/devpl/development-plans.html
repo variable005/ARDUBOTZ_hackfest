@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Plans</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="loaded">
+<div class="container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">floww</div>
+            <button class="toggle-btn" id="sidebarToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html"><i class="fa-solid fa-house"></i> <span class="nav-text">Home</span></a></li>
+                <li><a href="../empmgmt/employee-management.html"><i class="fa-solid fa-users"></i> <span class="nav-text">Employee Management</span></a></li>
+                <li><a href="../tasks/tasks.html"><i class="fa-solid fa-list-check"></i> <span class="nav-text">Tasks</span></a></li>
+                <li><a href="../atten/attendence.html"><i class="fa-solid fa-calendar-days"></i> <span class="nav-text">Attendance</span></a></li>
+                <li><a href="../pay/pay.html"><i class="fa-solid fa-money-bill-wave"></i> <span class="nav-text">Payroll</span></a></li>
+                <li><a href="../perf/performance-reviews.html"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Performance Reviews</span></a></li>
+                <li><a href="../feedb/feedback.html"><i class="fa-solid fa-comments"></i> <span class="nav-text">Feedback</span></a></li>
+                <li class="active"><a href="development-plans.html"><i class="fa-solid fa-graduation-cap"></i> <span class="nav-text">Development Plans</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header>
+            <div class="top-bar">
+                <div class="breadcrumb">HRMS / Development Plans</div>
+                <div class="search-bar">
+                    <input type="text" placeholder="<i class='fa-solid fa-magnifying-glass'></i> Search development plans...">
+                </div>
+                <div class="top-bar-actions">
+                    <button id="darkModeToggle" class="dark-mode-toggle">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <div class="user-profile">
+                    <span class="notification">
+                        <i class="fa-solid fa-bell" id="notificationBell"></i>
+                        <div class="notification-card" id="notificationCard">
+                            <h3>Notifications</h3>
+                            <div class="notification-item">New task assigned to you</div>
+                            <div class="notification-item">Leave request approved</div>
+                            <div class="notification-item">Performance review due soon</div>
+                            <a href="#" class="view-all">View All Notifications</a>
+                        </div>
+                    </span>
+                    <span class="avatar">HS</span>
+                    <span class="username">Hariom Sharnam</span>
+                    </div>
+                </div>
+            </div>
+            <h2>Development Plans</h2>
+        </header>
+
+        <section class="development-plan-overview">
+            <div class="card">
+                <h3><i class="fa-solid fa-file-alt"></i> View Employee Plans</h3>
+                <p>Browse and manage development plans for all employees.</p>
+                <a href="#" class="learn-more">View All Plans <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-user-plus"></i> Create New Plan</h3>
+                <p>Initiate a new development plan for an employee.</p>
+                <a href="plan_req.html" class="button primary"><i class="fa-solid fa-plus"></i> Create Plan</a>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-check-double"></i> Review Plan Requests</h3>
+                <p>Evaluate and approve or reject employee development plan requests.</p>
+                <a href="employee_plans.html" class="learn-more">Review Requests <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-chart-line"></i> Track Plan Progress</h3>
+                <p>Monitor the progress of employee development plans.</p>
+                <a href="tpp.html" class="learn-more">Track Progress <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-folder-open"></i> Development Plan Templates</h3>
+                <p>Access and manage templates for creating development plans.</p>
+                <a href="#" class="learn-more">View Templates <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-briefcase"></i> Post New Job</h3>
+                <p>Create and publish new job openings within the organization.</p>
+                <a href="#" class="learn-more">Post a Job <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-arrow-up"></i> Upskill Resources</h3>
+                <p>Provide employees with resources for professional development.</p>
+                <a href="upskill_resources.html" class="learn-more">Explore Resources <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <section class="development-goals">
+            <h3><i class="fa-solid fa-bullseye"></i> Employee Development Goals</h3>
+            <p>Track and manage the development goals of employees.</p>
+            <table class="development-goals-table">
+                <thead>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Goal</th>
+                    <th>Target Date</th>
+                    <th>Status</th>
+                    <th>Progress</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>John Doe</td>
+                    <td>Improve Communication Skills</td>
+                    <td>2025-06-30</td>
+                    <td>In Progress</td>
+                    <td><progress value="60" max="100"></progress> 60%</td>
+                    <td><button class="button small"><i class="fa-solid fa-eye"></i> View</button> <button class="button small"><i class="fa-solid fa-edit"></i> Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>Learn Advanced Python</td>
+                    <td>2025-09-30</td>
+                    <td>To Do</td>
+                    <td><progress value="20" max="100"></progress> 20%</td>
+                    <td><button class="button small"><i class="fa-solid fa-eye"></i> View</button> <button class="button small"><i class="fa-solid fa-edit"></i> Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Peter Jones</td>
+                    <td>Project Management Certification</td>
+                    <td>2025-12-31</td>
+                    <td>Planning</td>
+                    <td><progress value="10" max="100"></progress> 10%</td>
+                    <td><button class="button small"><i class="fa-solid fa-eye"></i> View</button> <button class="button small"><i class="fa-solid fa-edit"></i> Edit</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</div>
+
+<script src="../script.js"></script>
+</body>
+</html>
