@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Employee</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="add_employee.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="loaded">
+<div class="container">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">floww</div>
+      <button class="toggle-btn" id="sidebarToggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html"><i class="fa-solid fa-house"></i> <span class="nav-text">Home</span></a></li>
+        <li class="active"><a href="employee-management.html"><i class="fa-solid fa-users"></i> <span class="nav-text">Employee Management</span></a></li>
+        <li><a href="../tasks/tasks.html"><i class="fa-solid fa-list-check"></i> <span class="nav-text">Tasks</span></a></li>
+        <li><a href="../atten/attendence.html"><i class="fa-solid fa-calendar-days"></i> <span class="nav-text">Attendence</span></a></li>
+        <li><a href="../pay/pay.html"><i class="fa-solid fa-money-bill-wave"></i> <span class="nav-text">Payroll</span></a></li>
+        <li><a href="../perf/performance-reviews.html"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Performance Reviews</span></a></li>
+        <li><a href="../feedb/feedback.html"><i class="fa-solid fa-comments"></i> <span class="nav-text">Feedback</span></a></li>
+        <li><a href="../devpl/development-plans.html"><i class="fa-solid fa-graduation-cap"></i> <span class="nav-text">Development Plans</span></a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header>
+      <div class="top-bar">
+        <div class="breadcrumb">HRMS / Employee Management / Add Employee</div>
+        <div class="search-bar">
+          <input type="text" placeholder="<i class='fa-solid fa-magnifying-glass'></i> Search...">
+        </div>
+        <div class="top-bar-actions">
+          <button id="darkModeToggle" class="dark-mode-toggle">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <div class="user-profile">
+              <span class="notification">
+                <i class="fa-solid fa-bell" id="notificationBell"></i>
+                <div class="notification-card" id="notificationCard">
+                  <h3>Notifications</h3>
+                  <div class="notification-item">New task assigned to you</div>
+                  <div class="notification-item">Leave request approved</div>
+                  <div class="notification-item">Performance review due soon</div>
+                  <a href="#" class="view-all">View All Notifications</a>
+                </div>
+              </span>
+            <span class="avatar">IIT</span>
+            <span class="username">IIT DHANBAD</span>
+          </div>
+        </div>
+      </div>
+      <h2>Add Employee</h2>
+    </header>
+
+    <div class="feedback-actions">
+      <div class="card">
+        <h3><i class="fa-solid fa-user-plus"></i> Add Employee Details</h3>
+        <form class="request-form add-employee-form">
+          <div class="form-group">
+            <label for="employee_name">Employee Name:</label>
+            <input type="text" id="employee_name" name="employee_name" required>
+          </div>
+          <div class="form-group">
+            <label for="date_of_joining">Date of Joining:</label>
+            <input type="date" id="date_of_joining" name="date_of_joining" required>
+          </div>
+          <div class="form-group">
+            <label for="date_of_birth">Date of Birth:</label>
+            <input type="date" id="date_of_birth" name="date_of_birth" required>
+          </div>
+          <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age">
+          </div>
+          <div class="form-group">
+            <label for="blood_group">Blood Group:</label>
+            <input type="text" id="blood_group" name="blood_group">
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+          <div class="form-group">
+            <label for="emergency_contact_1">Emergency Contact 1:</label>
+            <input type="text" id="emergency_contact_1" name="emergency_contact_1">
+          </div>
+          <div class="form-group">
+            <label for="emergency_contact_2">Emergency Contact 2:</label>
+            <input type="text" id="emergency_contact_2" name="emergency_contact_2">
+          </div>
+          <div class="form-group">
+            <label for="medical_history">Medical History:</label>
+            <textarea id="medical_history" name="medical_history" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="designation">Designation:</label>
+            <input type="text" id="designation" name="designation" required>
+          </div>
+          <div class="form-group">
+            <label for="department">Department:</label>
+            <input type="text" id="department" name="department" required>
+          </div>
+          <div class="form-group">
+            <label for="paid_leaves_used">Paid Leaves Used:</label>
+            <input type="number" id="paid_leaves_used" name="paid_leaves_used" value="0">
+          </div>
+          <div class="form-group">
+            <label for="paid_leaves_remaining">Paid Leaves Remaining:</label>
+            <input type="number" id="paid_leaves_remaining" name="paid_leaves_remaining" value="0">
+          </div>
+          <div class="form-group">
+            <label for="overtime_hours_completed">Overtime Hours Completed:</label>
+            <input type="number" id="overtime_hours_completed" name="overtime_hours_completed" value="0">
+          </div>
+          <div class="form-group">
+            <label for="salary">Salary:</label>
+            <input type="number" id="salary" name="salary">
+          </div>
+          <div class="form-group">
+            <label for="overtime_bonus">Overtime Bonus:</label>
+            <input type="number" id="overtime_bonus" name="overtime_bonus" value="0">
+          </div>
+          <div class="form-group form-buttons">
+            <button type="submit" class="button primary"><i class="fa-solid fa-user-plus"></i> Add Employee</button>
+            <button type="button" class="button primary"><i class="fa-solid fa-pen-to-square"></i> Update Employee</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script defer src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
+
+<script defer>
+  document.addEventListener('DOMContentLoaded', function() {
+    const firebaseConfig = {
+      apiKey: "AIzaSyCZaXg1LNz37Z5wGzPsbF0GuV7ubAw5t1Y",
+      authDomain: "trial1-d6513.firebaseapp.com",
+      projectId: "trial1-d6513",
+      storageBucket: "trial1-d6513.firebasestorage.app",
+      messagingSenderId: "278281297726",
+      appId: "1:278281297726:web:d08848e01fef9c0476966f"
+    };
+
+    if (window.firebase) {
+      // initializing firebase here
+      firebase.initializeApp(firebaseConfig);
+      window.db = firebase.firestore();
+    } else {
+      console.error("Firebase SDK not loaded.");
+    }
+  });
+</script>
+
+<script defer src="../script.js"></script>
+</body>
+</html>
