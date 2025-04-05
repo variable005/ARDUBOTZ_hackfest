@@ -3,13 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks</title>
+    <title>Performance Reviews</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .charts-container {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .chart-card {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-card canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+        }
+
+        .chart-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .chart-card:hover::before {
+            opacity: 1;
+            content: '📊 Data Insights! ✨';
+        }
+    </style>
 </head>
 <body class="loaded">
 <div class="container">
@@ -24,134 +69,135 @@
             <ul>
                 <li><a href="../index.html"><i class="fa-solid fa-house"></i> <span class="nav-text">Home</span></a></li>
                 <li><a href="../empmgmt/employee-management.html"><i class="fa-solid fa-users"></i> <span class="nav-text">Employee Management</span></a></li>
-                <li class="active"><a href="tasks.html"><i class="fa-solid fa-list-check"></i> <span class="nav-text">Tasks</span></a></li>
-                <li><a href=../atten/attendence.html><i class="fa-solid fa-calendar-days"></i> <span class="nav-text">Attendance</span></a></li>
-                <li><a href=../pay/pay.html><i class="fa-solid fa-money-bill-wave"></i> <span class="nav-text">Payroll</span></a></li>
-                <li><a href=../perf/performance-reviews.html><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Performance Reviews</span></a></li>
-                <li><a href=../feedb/feedback.html><i class="fa-solid fa-comments"></i> <span class="nav-text">Feedback</span></a></li>
+                <li><a href="../tasks/tasks.html"><i class="fa-solid fa-list-check"></i> <span class="nav-text">Tasks</span></a></li>
+                <li><a href="../atten/attendence.html"><i class="fa-solid fa-calendar-days"></i> <span class="nav-text">Attendance</span></a></li>
+                <li><a href="../pay/pay.html"><i class="fa-solid fa-money-bill-wave"></i> <span class="nav-text">Payroll</span></a></li>
+                <li class="active"><a href="performance-reviews.html"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Performance Reviews</span></a></li>
+                <li><a href="../feedb/feedback.html"><i class="fa-solid fa-comments"></i> <span class="nav-text">Feedback</span></a></li>
                 <li><a href="../devpl/development-plans.html"><i class="fa-solid fa-graduation-cap"></i> <span class="nav-text">Development Plans</span></a></li>
             </ul>
         </nav>
     </aside>
-
     <main class="main-content">
         <header>
             <div class="top-bar">
-                <div class="breadcrumb">HRMS / Tasks</div>
+                <div class="breadcrumb">HRMS / Performance Reviews</div>
                 <div class="top-bar-actions">
                     <button id="darkModeToggle" class="dark-mode-toggle">
                         <i class="fa-solid fa-moon"></i>
                     </button>
                     <div class="user-profile">
-                        <span class="notification">
-                            <i class="fa-solid fa-bell" id="notificationBell"></i>
-                            <div class="notification-card" id="notificationCard">
-                                <h3>Notifications</h3>
-                                <div class="notification-item">New task assigned to you</div>
-                                <div class="notification-item">Leave request approved</div>
-                                <div class="notification-item">Performance review due soon</div>
-                                <a href="#" class="view-all">View All Notifications</a>
-                            </div>
-                        </span>
+                    <span class="notification">
+                        <i class="fa-solid fa-bell" id="notificationBell"></i>
+                        <div class="notification-card" id="notificationCard">
+                            <h3>Notifications</h3>
+                            <div class="notification-item">New task assigned to you</div>
+                            <div class="notification-item">Leave request approved</div>
+                            <div class="notification-item">Performance review due soon</div>
+                            <a href="#" class="view-all">View All Notifications</a>
+                        </div>
+                    </span>
                         <span class="avatar">HS</span>
                         <span class="username">Hariom Sharnam</span>
                     </div>
                 </div>
             </div>
-            <h2>Tasks</h2>
+            <h2>Performance Reviews</h2>
         </header>
-
-        <section class="overview-cards">
-            <div class="card">
-                <h3><i class="fa-solid fa-plus"></i> Create New Task</h3>
-                <p>Create and assign new tasks to employees.</p>
-                <a href="add_tasks.html" class="learn-more">Add Task <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-            <div class="card">
-                <h3><i class="fa-solid fa-list-check"></i> View All Tasks</h3>
-                <p>See a comprehensive list of all assigned tasks.</p>
-                <a href="view_tasks.html" class="learn-more">View Tasks <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-            <div class="card">
-                <h3><i class="fa-solid fa-calendar-alt"></i> Upcoming Deadlines</h3>
-                <p>Track tasks with approaching deadlines.</p>
-                <a href="deadline.html" class="learn-more">View Deadlines <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-            <div class="card">
-                <h3><i class="fa-solid fa-check-double"></i> Completed Tasks</h3>
-                <p>Review a list of all completed tasks.</p>
-                <a href="comp_tasks.html" class="learn-more">View Completed <i class="fa-solid fa-arrow-right"></i></a>
+        <section class="performance-review-actions">
+            <h3><i class="fa-solid fa-bolt"></i> Quick Actions</h3>
+            <div class="action-buttons">
+                <a href="create_review_cycle.html" class="button primary"><i class="fa-solid fa-plus-circle"></i> Create New Review Cycle</a>
+                <a href="manage_templates.html" class="button"><i class="fa-solid fa-file-contract"></i> Manage Review Templates</a>
+                <a href="send_reminders.html" class="button"><i class="fa-solid fa-bell"></i> Send Review Reminders</a>
+                <a href="generate_reports.html" class="button"><i class="fa-solid fa-chart-bar"></i> Generate Review Reports</a>
             </div>
         </section>
 
-        <section class="task-list">
-            <h3><i class="fa-solid fa-tasks"></i> Tasks</h3>
-            <table class="tasks-table">
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Assignee</th>
-                    <th>Due Date</th>
-                    <th>Priority</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Finalize Q3 Performance Review Templates</td>
-                    <td>Saurav Sambhav</td>
-                    <td>2025-04-05</td>
-                    <td class="priority high">High</td>
-                    <td><span class="task-status in-progress">In Progress</span></td>
-                    <td>
-                        <button class="button small"><i class="fa-solid fa-eye"></i></button>
-                        <button class="button small"><i class="fa-solid fa-pencil"></i></button>
-                        <button class="button small"><i class="fa-solid fa-check"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Collect Employee Feedback on New System</td>
-                    <td>KD Pathak</td>
-                    <td>2025-04-10</td>
-                    <td class="priority medium">Medium</td>
-                    <td><span class="task-status to-do">To Do</span></td>
-                    <td>
-                        <button class="button small"><i class="fa-solid fa-eye"></i></button>
-                        <button class="button small"><i class="fa-solid fa-pencil"></i></button>
-                        <button class="button small"><i class="fa-solid fa-check"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Prepare Training Materials for Performance Review Process</td>
-                    <td>Sahdev</td>
-                    <td>2025-03-30</td>
-                    <td class="priority high">High</td>
-                    <td><span class="task-status completed">Completed</span></td>
-                    <td>
-                        <button class="button small"><i class="fa-solid fa-eye"></i></button>
-                        <button class="button small"><i class="fa-solid fa-pencil"></i></button>
-                        <button class="button small"><i class="fa-solid fa-check"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Review and Update Employee Job Descriptions</td>
-                    <td>Sakshi Kumari</td>
-                    <td>2025-04-15</td>
-                    <td class="priority low">Low</td>
-                    <td><span class="task-status overdue">Overdue</span></td>
-                    <td>
-                        <button class="button small"><i class="fa-solid fa-eye"></i></button>
-                        <button class="button small"><i class="fa-solid fa-pencil"></i></button>
-                        <button class="button small"><i class="fa-solid fa-check"></i></button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+        <section class="review-summary">
+            <h3><i class="fa-solid fa-lightbulb"></i> Summary</h3>
+            <div class="insight-card">
+                <h4>Overall Feedback Assessment</h4>
+                <p>Based on the latest feedback received from all departments, the overall performance trends indicate a <span class="sentiment-positive">positive</span> assessment across the organization. Departments have generally reported positive outcomes and achievements during this review period.</p>
+                <p class="note" style="font-size: 0.8em; color: #777;">Note: This summary reflects the general sentiment reported by each department.</p>
+            </div>
+        </section>
+        <section class="performance-review-overview current-q-summary">
+            <h3><i class="fa-solid fa-calendar-check"></i> Current Q Summary</h3>
+            <div class="card">
+                <p><strong>Cycle:</strong> Q3 2025</p>
+                <p><strong>Status:</strong> In Progress</p>
+                <p><strong>Timeline:</strong> July 1, 2025 - September 30, 2025</p>
+                <p><strong>Completion Rate:</strong> 65%</p>
+                <a href="review_cycles.html" class="learn-more">View Cycle Details <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </section>
+        <section class="review-summary">
+            <h3><i class="fa-solid fa-exclamation-triangle"></i> Key Areas of Improvement Identified</h3>
+            <div class="insight-card">
+                <h4>Key Areas of Improvement Identified</h4>
+                <p>Based on recurring themes in recent reviews, the following areas are frequently mentioned for development:</p>
+                <p>
+                    <span class="keyword">Communication Skills</span>
+                    <span class="keyword">Project Management</span>
+                    <span class="keyword">Technical Proficiency (Specific Area)</span>
+                </p>
+                <button class="button small">Explore Improvement Areas by Department</button>
+            </div>
+        </section>
+        <section class="review-statistics">
+            <h3><i class="fa-solid fa-chart-pie"></i> Review Statistics - Overview</h3>
+            <div class="charts-container">
+                <div class="chart-card">
+                    <h4>Overall Completion Status</h4>
+                    <canvas id="completionStatusChart" width="400" height="200"></canvas>
+                    <p class="chart-description">Shows the percentage of completed, pending, and in-progress reviews for the current cycle.</p>
+                </div>
+                <div class="chart-card">
+                    <h4>Average Ratings by Department</h4>
+                    <canvas id="departmentRatingsChart" width="400" height="200"></canvas>
+                    <p class="chart-description">Illustrates the average performance ratings across different departments.</p>
+                </div>
+            </div>
         </section>
     </main>
 </div>
 
 <script src="../script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const completionStatusChart = document.getElementById('completionStatusChart');
+        if (completionStatusChart) {
+            new Chart(completionStatusChart, {
+                type: 'pie',
+                data: {
+                    labels: ['Completed', 'Pending', 'In Progress'],
+                    datasets: [{
+                        data: [45, 30, 25],
+                        backgroundColor: ['#4CAF50', '#FF9800', '#2196F3'],
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false } // Let it fill the container
+            });
+        }
+
+        const departmentRatingsChart = document.getElementById('departmentRatingsChart');
+        if (departmentRatingsChart) {
+            new Chart(departmentRatingsChart, {
+                type: 'bar',
+                data: {
+                    labels: ['Marketing', 'Sales', 'Engineering', 'HR'],
+                    datasets: [{
+                        label: 'Average Rating',
+                        data: [4.2, 3.9, 4.5, 4.0],
+                        backgroundColor: '#673ab7',
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 5 } } } // Let it fill the container
+            });
+        }
+    });
+</script>
 </body>
 </html>
