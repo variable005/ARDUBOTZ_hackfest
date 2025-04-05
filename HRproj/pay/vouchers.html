@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Available Vouchers</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="vouchers.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="loaded">
+<div class="container">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">floww</div>
+      <button class="toggle-btn" id="sidebarToggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html"><i class="fa-solid fa-house"></i> <span class="nav-text">Home</span></a></li>
+        <li><a href="../empmgmt/employee-management.html"><i class="fa-solid fa-users"></i> <span class="nav-text">Employee Management</span></a></li>
+        <li><a href="../tasks/tasks.html"><i class="fa-solid fa-list-check"></i> <span class="nav-text">Tasks</span></a></li>
+        <li><a href="../atten/attendence.html"><i class="fa-solid fa-calendar-days"></i> <span class="nav-text">Attendance</span></a></li>
+        <li class="active"><a href="pay.html"><i class="fa-solid fa-money-bill-wave"></i> <span class="nav-text">Payroll</span></a></li>
+        <li><a href="../perf/performance-reviews.html"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Performance Reviews</span></a></li>
+        <li><a href="../feedb/feedback.html"><i class="fa-solid fa-comments"></i> <span class="nav-text">Feedback</span></a></li>
+        <li><a href="../devpl/development-plans.html"><i class="fa-solid fa-graduation-cap"></i> <span class="nav-text">Development Plans</span></a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header>
+      <div class="top-bar">
+        <div class="breadcrumb">HRMS / Payroll / Available Vouchers</div>
+        <div class="top-bar-actions">
+          <button id="darkModeToggle" class="dark-mode-toggle">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <div class="user-profile">
+                        <span class="notification">
+                            <i class="fa-solid fa-bell" id="notificationBell"></i>
+                            <div class="notification-card" id="notificationCard">
+                                <h3>Notifications</h3>
+                                <div class="notification-item">New task assigned to you</div>
+                                <div class="notification-item">Leave request approved</div>
+                                <div class="notification-item">Performance review due soon</div>
+                                <a href="#" class="view-all">View All Notifications</a>
+                            </div>
+                        </span>
+            <span class="avatar">HS</span>
+            <span class="username">Hariom Sharnam</span>
+          </div>
+        </div>
+      </div>
+      <h2>Available Vouchers</h2>
+    </header>
+
+    <section class="voucher-list">
+      <div class="card">
+        <h3><i class="fa-solid fa-gift"></i> List of Vouchers</h3>
+        <table class="voucher-table">
+          <thead>
+          <tr>
+            <th>Voucher Name</th>
+            <th>Brand</th>
+            <th>Value</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Movie Night Voucher</td>
+            <td>BookMyShow</td>
+            <td>₹500</td>
+            <td><button class="button small">Assign</button></td>
+          </tr>
+          <tr>
+            <td>Footwear Discount Voucher</td>
+            <td>Bata</td>
+            <td>₹1000</td>
+            <td><button class="button small">Assign</button></td>
+          </tr>
+          <tr>
+            <td>Fashion Shopping Voucher</td>
+            <td>Myntra</td>
+            <td>₹750</td>
+            <td><button class="button small">Assign</button></td>
+          </tr>
+          <tr>
+            <td>Food Delivery Voucher</td>
+            <td>Swiggy</td>
+            <td>₹300</td>
+            <td><button class="button small">Assign</button></td>
+          </tr>
+          <tr>
+            <td>Cinema Experience Voucher</td>
+            <td>PVR Cinemas</td>
+            <td>₹800</td>
+            <td><button class="button small">Assign</button></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="../script.js"></script>
+</body>
+</html>
