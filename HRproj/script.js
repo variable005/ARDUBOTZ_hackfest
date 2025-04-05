@@ -80,3 +80,64 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const addEmployeeForm = document.querySelector('.add-employee-form');
+    if (addEmployeeForm) {
+        addEmployeeForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const employeeName = document.getElementById('employee_name').value;
+            const dateOfJoining = document.getElementById('date_of_joining').value;
+            const dateOfBirth = document.getElementById('date_of_birth').value;
+            const age = document.getElementById('age').value;
+            const bloodGroup = document.getElementById('blood_group').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const emergencyContact1 = document.getElementById('emergency_contact_1').value;
+            const emergencyContact2 = document.getElementById('emergency_contact_2').value;
+            const medicalHistory = document.getElementById('medical_history').value;
+            const address = document.getElementById('address').value;
+            const designation = document.getElementById('designation').value;
+            const department = document.getElementById('department').value;
+            const paidLeavesUsed = parseInt(document.getElementById('paid_leaves_used').value);
+            const paidLeavesRemaining = parseInt(document.getElementById('paid_leaves_remaining').value);
+            const overtimeHoursCompleted = parseInt(document.getElementById('overtime_hours_completed').value);
+            const salary = parseFloat(document.getElementById('salary').value);
+            const overtimeBonus = parseFloat(document.getElementById('overtime_bonus').value);
+
+            const employeeData = {
+                employee_name: employeeName,
+                date_of_joining: dateOfJoining,
+                date_of_birth: dateOfBirth,
+                age: age ? parseInt(age) : null,
+                blood_group: bloodGroup,
+                email: email,
+                phone: phone,
+                emergency_contact_1: emergencyContact1,
+                emergency_contact_2: emergencyContact2,
+                medical_history: medicalHistory,
+                address: address,
+                designation: designation,
+                department: department,
+                paid_leaves_used: paidLeavesUsed,
+                paid_leaves_remaining: paidLeavesRemaining,
+                overtime_hours_completed: overtimeHoursCompleted,
+                salary: salary,
+                overtime_bonus: overtimeBonus,
+            };
+
+            db.collection('employees')
+                .add(employeeData)
+                .then((docRef) => {
+                    console.log('Employee data added with ID: ', docRef.id);
+                    alert('Employee added successfully!');
+                    addEmployeeForm.reset(); // to clear the form
+                })
+                .catch((error) => {
+                    console.error('Error adding employee data: ', error);
+                    alert('Error adding employee. Please try again.');
+                });
+        });
+    }
+});
