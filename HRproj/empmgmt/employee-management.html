@@ -42,7 +42,16 @@
                         <i class="fa-solid fa-moon"></i>
                     </button>
                     <div class="user-profile">
-                        <span class="notification"><i class="fa-solid fa-bell"></i></span>
+                        <span class="notification">
+                            <i class="fa-solid fa-bell" id="notificationBell"></i>
+                            <div class="notification-card" id="notificationCard">
+                                <h3>Notifications</h3>
+                                <div class="notification-item">New task assigned to you</div>
+                                <div class="notification-item">Leave request approved</div>
+                                <div class="notification-item">Performance review due soon</div>
+                                <a href="#" class="view-all">View All Notifications</a>
+                            </div>
+                        </span>
                         <span class="avatar">HS</span>
                         <span class="username">Hariom Sharnam</span>
                     </div>
@@ -60,7 +69,7 @@
             <div class="card">
                 <h3><i class="fa-solid fa-sitemap"></i> Departments</h3>
                 <p>Organize employees by departments and roles.</p>
-                <a href="departments.html" class="learn-more">Manage Depts <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="view_dept_emp.html" class="learn-more">Manage Depts <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="card">
                 <h3><i class="fa-solid fa-users"></i> View Employees</h3>
@@ -86,6 +95,6 @@
     </main>
 </div>
 
-<script src=./script.js></script>
+<script src=../script.js></script>
 </body>
 </html>
