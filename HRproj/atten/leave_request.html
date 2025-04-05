@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Leave Requests</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="leave_request.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="loaded">
+<div class="container">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">floww</div>
+      <button class="toggle-btn" id="sidebarToggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../index.html"><i class="fa-solid fa-house"></i> <span class="nav-text">Home</span></a></li>
+        <li><a href="../empmgmt/employee-management.html"><i class="fa-solid fa-users"></i> <span class="nav-text">Employee Management</span></a></li>
+        <li><a href="../tasks/tasks.html"><i class="fa-solid fa-list-check"></i> <span class="nav-text">Tasks</span></a></li>
+        <li class="active"><a href="attendence.html"><i class="fa-solid fa-calendar-days"></i> <span class="nav-text">Attendance</span></a></li>
+        <li><a href="../pay/pay.html"><i class="fa-solid fa-money-bill-wave"></i> <span class="nav-text">Payroll</span></a></li>
+        <li><a href="../perf/performance-reviews.html"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Performance Reviews</span></a></li>
+        <li><a href="../feedb/feedback.html"><i class="fa-solid fa-comments"></i> <span class="nav-text">Feedback</span></a></li>
+        <li><a href="../devpl/development-plans.html"><i class="fa-solid fa-graduation-cap"></i> <span class="nav-text">Development Plans</span></a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header>
+      <div class="top-bar">
+        <div class="breadcrumb">HRMS / Attendance / Leave Requests</div>
+        <div class="search-bar">
+          <input type="text" placeholder="<i class='fa-solid fa-magnifying-glass'></i> Search leave requests...">
+        </div>
+        <div class="top-bar-actions">
+          <button id="darkModeToggle" class="dark-mode-toggle">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <div class="user-profile">
+                        <span class="notification">
+                            <i class="fa-solid fa-bell" id="notificationBell"></i>
+                            <div class="notification-card" id="notificationCard">
+                                <h3>Notifications</h3>
+                                <div class="notification-item">New task assigned to you</div>
+                                <div class="notification-item">Leave request approved</div>
+                                <div class="notification-item">Performance review due soon</div>
+                                <a href="#" class="view-all">View All Notifications</a>
+                            </div>
+                        </span>
+            <span class="avatar">HS</span>
+            <span class="username">Hariom Sharnam</span>
+          </div>
+        </div>
+      </div>
+      <h2>Employee Leave Requests</h2>
+    </header>
+
+    <section class="leave-requests-list">
+      <div class="card">
+        <h3><i class="fa-solid fa-envelope-open-text"></i> Pending Leave Requests</h3>
+        <table class="leave-requests-table">
+          <thead>
+          <tr>
+            <th>Employee Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Priya Sharma</td>
+            <td>2025-04-05</td>
+            <td>2025-04-07</td>
+            <td>Personal Leave</td>
+            <td>Pending</td>
+            <td>
+              <div class="button-container">
+                <button class="button small approve-btn"><i class="fa-solid fa-check"></i> Approve</button>
+                <button class="button small deny-btn"><i class="fa-solid fa-times"></i> Deny</button>
+                <button class="button small mail-btn"><i class="fa-solid fa-envelope"></i> Mail</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Rahul Verma</td>
+            <td>2025-04-10</td>
+            <td>2025-04-10</td>
+            <td>Sick Leave</td>
+            <td>Pending</td>
+            <td>
+              <div class="button-container">
+                <button class="button small approve-btn"><i class="fa-solid fa-check"></i> Approve</button>
+                <button class="button small deny-btn"><i class="fa-solid fa-times"></i> Deny</button>
+                <button class="button small mail-btn"><i class="fa-solid fa-envelope"></i> Mail</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Sneha Gupta</td>
+            <td>2025-04-15</td>
+            <td>2025-04-19</td>
+            <td>Vacation</td>
+            <td>Pending</td>
+            <td>
+              <div class="button-container">
+                <button class="button small approve-btn"><i class="fa-solid fa-check"></i> Approve</button>
+                <button class="button small deny-btn"><i class="fa-solid fa-times"></i> Deny</button>
+                <button class="button small mail-btn"><i class="fa-solid fa-envelope"></i> Mail</button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="../script.js"></script>
+</body>
+</html>
