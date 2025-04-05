@@ -190,35 +190,6 @@ header h2 {
     font-size: 14px;
 }
 
-.search-bar {
-    position: relative;
-}
-
-.search-bar input[type="text"] {
-    padding: 10px 20px 10px 40px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    width: 300px;
-    font-size: 15px;
-    background-color: var(--bg-color-secondary);
-    color: var(--text-color-primary);
-    transition: border-color var(--transition-duration) var(--transition-easing), background-color var(--transition-duration) var(--transition-easing), color var(--transition-duration) var(--transition-easing);
-}
-
-.search-bar input[type="text"]:focus {
-    outline: none;
-    border-color: var(--secondary-color);
-}
-
-.search-bar i {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-color-secondary);
-    font-size: 16px;
-}
-
 .top-bar-actions {
     display: flex;
     align-items: center;
