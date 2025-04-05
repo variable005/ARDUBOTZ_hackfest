@@ -10,6 +10,51 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .charts-container {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .chart-card {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-card canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+        }
+
+        .chart-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .chart-card:hover::before {
+            opacity: 1;
+            content: '📊 Data Insights! ✨';
+        }
+    </style>
 </head>
 <body class="loaded">
 <div class="container">
@@ -33,7 +78,6 @@
             </ul>
         </nav>
     </aside>
-
     <main class="main-content">
         <header>
             <div class="top-bar">
@@ -53,139 +97,66 @@
                             <a href="#" class="view-all">View All Notifications</a>
                         </div>
                     </span>
-                    <span class="avatar">HS</span>
-                    <span class="username">Hariom Sharnam</span>
+                        <span class="avatar">HS</span>
+                        <span class="username">Hariom Sharnam</span>
                     </div>
                 </div>
             </div>
             <h2>Performance Reviews</h2>
         </header>
+        <section class="performance-review-actions">
+            <h3><i class="fa-solid fa-bolt"></i> Quick Actions</h3>
+            <div class="action-buttons">
+                <a href="create_review_cycle.html" class="button primary"><i class="fa-solid fa-plus-circle"></i> Create New Review Cycle</a>
+                <a href="manage_templates.html" class="button"><i class="fa-solid fa-file-contract"></i> Manage Review Templates</a>
+                <a href="send_reminders.html" class="button"><i class="fa-solid fa-bell"></i> Send Review Reminders</a>
+                <a href="generate_reports.html" class="button"><i class="fa-solid fa-chart-bar"></i> Generate Review Reports</a>
+            </div>
+        </section>
 
-        <section class="performance-review-overview">
+        <section class="review-summary">
+            <h3><i class="fa-solid fa-lightbulb"></i> Summary</h3>
+            <div class="insight-card">
+                <h4>Overall Feedback Assessment</h4>
+                <p>Based on the latest feedback received from all departments, the overall performance trends indicate a <span class="sentiment-positive">positive</span> assessment across the organization. Departments have generally reported positive outcomes and achievements during this review period.</p>
+                <p class="note" style="font-size: 0.8em; color: #777;">Note: This summary reflects the general sentiment reported by each department.</p>
+            </div>
+        </section>
+        <section class="performance-review-overview current-q-summary">
+            <h3><i class="fa-solid fa-calendar-check"></i> Current Q Summary</h3>
             <div class="card">
-                <h3><i class="fa-solid fa-calendar-check"></i> Current Review Cycle</h3>
                 <p><strong>Cycle:</strong> Q3 2025</p>
+                <p><strong>Status:</strong> In Progress</p>
                 <p><strong>Timeline:</strong> July 1, 2025 - September 30, 2025</p>
+                <p><strong>Completion Rate:</strong> 65%</p>
                 <a href="review_cycles.html" class="learn-more">View Cycle Details <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <div class="card">
-                <h3><i class="fa-solid fa-user-pen"></i> Start Department Appraisal</h3>
-                <p>Initiate the appraisal process for your department for the current review cycle.</p>
-                <a href="appraisal_form.html" class="learn-more">Start Appraisal <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-            <div class="card">
-                <h3><i class="fa-solid fa-tasks"></i> Goals & Objectives</h3>
-                <p>Review your defined goals and objectives for the current performance period.</p>
-                <a href="#" class="learn-more">View Goals <i class="fa-solid fa-arrow-right"></i></a>
+        </section>
+        <section class="review-summary">
+            <h3><i class="fa-solid fa-exclamation-triangle"></i> Key Areas of Improvement Identified</h3>
+            <div class="insight-card">
+                <h4>Key Areas of Improvement Identified</h4>
+                <p>Based on recurring themes in recent reviews, the following areas are frequently mentioned for development:</p>
+                <p>
+                    <span class="keyword">Communication Skills</span>
+                    <span class="keyword">Project Management</span>
+                    <span class="keyword">Technical Proficiency (Specific Area)</span>
+                </p>
+                <button class="button small">Explore Improvement Areas by Department</button>
             </div>
         </section>
-
         <section class="review-statistics">
-            <h3><i class="fa-solid fa-chart-pie"></i> Review Statistics</h3>
+            <h3><i class="fa-solid fa-chart-pie"></i> Review Statistics - Overview</h3>
             <div class="charts-container">
                 <div class="chart-card">
-                    <h4>Overall Rating Distribution</h4>
-                    {/* Placeholder for Pie Chart or Graph */}
-                    <div class="chart-placeholder">Pie Chart of Overall Ratings</div>
+                    <h4>Overall Completion Status</h4>
+                    <canvas id="completionStatusChart" width="400" height="200"></canvas>
+                    <p class="chart-description">Shows the percentage of completed, pending, and in-progress reviews for the current cycle.</p>
                 </div>
                 <div class="chart-card">
-                    <h4>Review Status Breakdown</h4>
-                    {/* Placeholder for Pie Chart or Graph */}
-                    <div class="chart-placeholder">Bar Graph of Review Status (Completed, Pending, etc.)</div>
-                </div>
-                <div class="chart-card">
-                    <h4>Department-wise Average Ratings</h4>
-                    {/* Placeholder for Pie Chart or Graph */}
-                    <div class="chart-placeholder">Bar Graph of Average Ratings per Department</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="upcoming-reviews">
-            <h3><i class="fa-solid fa-hourglass-half"></i> Pending Reviews</h3>
-            <table class="performance-reviews-table">
-                <thead>
-                <tr>
-                    <th>Employee Name</th>
-                    <th>Review Period</th>
-                    <th>Type</th>
-                    <th>Due Date</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Priya Sharma</td>
-                    <td>Q3 2025</td>
-                    <td>Manager Review</td>
-                    <td>2025-09-30</td>
-                    <td>To Do</td>
-                    <td><button class="button small"><i class="fa-solid fa-eye"></i> View</button> <button class="button small"><i class="fa-solid fa-edit"></i> Edit</button></td>
-                </tr>
-                <tr>
-                    <td>Rahul Verma</td>
-                    <td>Q3 2025</td>
-                    <td>Manager Review</td>
-                    <td>2025-09-30</td>
-                    <td>In Progress</td>
-                    <td><button class="button small"><i class="fa-solid fa-eye"></i> View</button> <button class="button small"><i class="fa-solid fa-edit"></i> Edit</button></td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section class="past-reviews">
-            <h3><i class="fa-solid fa-history"></i> Past Performance Reviews</h3>
-            <table class="performance-reviews-table">
-                <thead>
-                <tr>
-                    <th>Review Period</th>
-                    <th>Review Date</th>
-                    <th>Overall Rating</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Q2 2025</td>
-                    <td>2025-06-28</td>
-                    <td>Excellent</td>
-                    <td><button class="button small"><i class="fa-solid fa-file-pdf"></i> View PDF</button></td>
-                </tr>
-                <tr>
-                    <td>Q1 2025</td>
-                    <td>2025-03-31</td>
-                    <td>Good</td>
-                    <td><button class="button small"><i class="fa-solid fa-file-pdf"></i> View PDF</button></td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section class="review-templates">
-            <h3><i class="fa-solid fa-file-contract"></i> Review Templates</h3>
-            <p>Access the templates used for performance reviews.</p>
-            <a href="#" class="button">View Templates</a>
-        </section>
-
-        <section class="key-metrics">
-            <h3><i class="fa-solid fa-tachometer-alt"></i> Key Performance Metrics</h3>
-            <div class="metrics-cards">
-                <div class="card metric-card">
-                    <h4>Employee Overtime</h4>
-                    <p>Average Overtime Hours: <strong>4.5 hours/week</strong></p>
-                    <a href="#" class="learn-more">View Details <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-                <div class="card metric-card">
-                    <h4>Project Delivery Time</h4>
-                    <p>Average Delivery Time: <strong>15 days</strong></p>
-                    <a href="#" class="learn-more">View Details <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-                <div class="card metric-card">
-                    <h4>Discipline Incidents</h4>
-                    <p>Total Incidents (Last Quarter): <strong>2</strong></p>
-                    <a href="#" class="learn-more">View Details <i class="fa-solid fa-arrow-right"></i></a>
+                    <h4>Average Ratings by Department</h4>
+                    <canvas id="departmentRatingsChart" width="400" height="200"></canvas>
+                    <p class="chart-description">Illustrates the average performance ratings across different departments.</p>
                 </div>
             </div>
         </section>
@@ -193,5 +164,55 @@
 </div>
 
 <script src="../script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const completionStatusChart = document.getElementById('completionStatusChart');
+        if (completionStatusChart) {
+            new Chart(completionStatusChart, {
+                type: 'pie',
+                data: {
+                    labels: ['Completed', 'Pending', 'In Progress'],
+                    datasets: [{
+                        data: [45, 30, 25],
+                        backgroundColor: ['#4CAF50', '#FF9800', '#2196F3'],
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false } // Let it fill the container
+            });
+        }
+
+        const departmentRatingsChart = document.getElementById('departmentRatingsChart');
+        if (departmentRatingsChart) {
+            new Chart(departmentRatingsChart, {
+                type: 'bar',
+                data: {
+                    labels: ['Marketing', 'Sales', 'Engineering', 'HR'],
+                    datasets: [{
+                        label: 'Average Rating',
+                        data: [4.2, 3.9, 4.5, 4.0],
+                        backgroundColor: '#673ab7',
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 5 } } } // Let it fill the container
+            });
+        }
+
+        const notificationBell = document.getElementById('notificationBell');
+        const notificationCard = document.getElementById('notificationCard');
+
+        if (notificationBell && notificationCard) {
+            notificationBell.addEventListener('click', () => {
+                notificationCard.classList.toggle('show-notifications');
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!notificationCard.contains(event.target) && event.target !== notificationBell) {
+                    notificationCard.classList.remove('show-notifications');
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>
