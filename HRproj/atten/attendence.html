@@ -10,6 +10,93 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .calendar-container {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .calendar-header {
+            background-color: #f0f0f0;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .calendar-navigation button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            padding: 5px 10px;
+        }
+
+        .calendar-title {
+            font-weight: bold;
+        }
+
+        .calendar-body {
+            padding: 10px;
+        }
+
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .calendar-table th,
+        .calendar-table td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #eee;
+            cursor: pointer; /* Indicate that cells are clickable */
+            position: relative; /* For status indicator positioning */
+        }
+
+        .calendar-table th {
+            background-color: #ddd;
+        }
+
+        .calendar-table td.today {
+            background-color: #e0f7fa;
+            font-weight: bold;
+        }
+
+        .calendar-table td.other-month {
+            color: #aaa;
+            cursor: default; /* Disable click for other months */
+        }
+
+        .attendance-status {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            font-size: 0.8em;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .present {
+            background-color: #a5d6a7; /* Light green */
+        }
+
+        .absent {
+            background-color: #ef9a9a; /* Light red */
+        }
+
+        .leave {
+            background-color: #ffb74d; /* Light orange */
+        }
+    </style>
 </head>
 <body class="loaded">
 <div class="container">
@@ -27,9 +114,9 @@
                 <li><a href="../tasks/tasks.html"><i class="fa-solid fa-list-check"></i> <span class="nav-text">Tasks</span></a></li>
                 <li class="active"><a href="attendence.html"><i class="fa-solid fa-calendar-days"></i> <span class="nav-text">Attendance</span></a></li>
                 <li><a href="../pay/pay.html"><i class="fa-solid fa-money-bill-wave"></i> <span class="nav-text">Payroll</span></a></li>
-                <li><a href="../performance-reviews.html"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Performance Reviews</span></a></li>
-                <li><a href="../feedback.html"><i class="fa-solid fa-comments"></i> <span class="nav-text">Feedback</span></a></li>
-                <li><a href="../development-plans.html"><i class="fa-solid fa-graduation-cap"></i> <span class="nav-text">Development Plans</span></a></li>
+                <li><a href="../perf/performance-reviews.html"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Performance Reviews</span></a></li>
+                <li><a href="../feedb/feedback.html"><i class="fa-solid fa-comments"></i> <span class="nav-text">Feedback</span></a></li>
+                <li><a href="../devpl/development-plans.html"><i class="fa-solid fa-graduation-cap"></i> <span class="nav-text">Development Plans</span></a></li>
             </ul>
         </nav>
     </aside>
@@ -46,7 +133,16 @@
                         <i class="fa-solid fa-moon"></i>
                     </button>
                     <div class="user-profile">
-                        <span class="notification"><i class="fa-solid fa-bell"></i></span>
+                    <span class="notification">
+                        <i class="fa-solid fa-bell" id="notificationBell"></i>
+                        <div class="notification-card" id="notificationCard">
+                            <h3>Notifications</h3>
+                            <div class="notification-item">New task assigned to you</div>
+                            <div class="notification-item">Leave request approved</div>
+                            <div class="notification-item">Performance review due soon</div>
+                            <a href="#" class="view-all">View All Notifications</a>
+                        </div>
+                    </span>
                         <span class="avatar">HS</span>
                         <span class="username">Hariom Sharnam</span>
                     </div>
@@ -58,8 +154,8 @@
         <section class="attendance-overview">
             <div class="card">
                 <h3><i class="fa-solid fa-user-clock"></i> Today's Status</h3>
-                <p>Not Checked In</p>
-                <button class="button primary">Check In</button>
+                <p id="todaysAttendanceStatus">Not Checked In</p>
+                <button class="button primary" id="checkInOutButton">Check In</button>
             </div>
             <div class="card">
                 <h3><i class="fa-regular fa-hourglass-half"></i> Total Hours Worked (This Month)</h3>
@@ -67,11 +163,11 @@
             </div>
             <div class="card">
                 <h3><i class="fa-regular fa-calendar-check"></i> Present Days (This Month)</h3>
-                <p>0 Days</p>
+                <p id="presentDays">0 Days</p>
             </div>
             <div class="card">
                 <h3><i class="fa-regular fa-calendar-xmark"></i> Absent Days (This Month)</h3>
-                <p>0 Days</p>
+                <p id="absentDays">0 Days</p>
             </div>
             <div class="card">
                 <h3><i class="fa-regular fa-envelope"></i> Paid Leaves Left</h3>
@@ -83,7 +179,7 @@
             </div>
             <div class="card">
                 <h3><i class="fa-regular fa-calendar"></i> Company Holidays</h3>
-                <ul>
+                <ul id="companyHolidaysList">
                     <li>[Date] - [Holiday Name]</li>
                     <li>[Date] - [Holiday Name]</li>
                     <li>[Date] - [Holiday Name]</li>
@@ -94,18 +190,210 @@
         <section class="attendance-calendar">
             <h3><i class="fa-regular fa-calendar"></i> Attendance Calendar</h3>
             <div class="calendar-placeholder">
-                [ Calendar will go here ]
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button id="prevMonth">←</button>
+                        <h2 id="currentMonthYear" class="calendar-title"></h2>
+                        <button id="nextMonth">→</button>
+                    </div>
+                    <div class="calendar-body">
+                        <table class="calendar-table" id="calendar">
+                            <thead>
+                            <tr>
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                            </tr>
+                            </thead>
+                            <tbody id="calendarBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="leave-requests">
             <h3><i class="fa-regular fa-paper-plane"></i> Leave Requests</h3>
-            <button class="button primary">Request Leave</button>
+            <a href="leave_request.html"><button class="button primary">Pending Requests</button></a>
             <button class="button secondary">Leave Approval</button>
         </section>
     </main>
 </div>
 
+<script>
+    const calendarBody = document.getElementById('calendarBody');
+    const currentMonthYear = document.getElementById('currentMonthYear');
+    const prevMonthBtn = document.getElementById('prevMonth');
+    const nextMonthBtn = document.getElementById('nextMonth');
+
+    const todaysAttendanceStatus = document.getElementById('todaysAttendanceStatus');
+    const checkInOutButton = document.getElementById('checkInOutButton');
+    const presentDaysElement = document.getElementById('presentDays');
+    const absentDaysElement = document.getElementById('absentDays');
+    const companyHolidaysList = document.getElementById('companyHolidaysList');
+
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
+    let attendanceData = {}; // Object to store attendance status for each date (YYYY-MM-DD: 'present'/'absent'/'leave')
+
+    function updateOverview() {
+        let presentCount = 0;
+        let absentCount = 0;
+        const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+        const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0);
+
+        for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
+            const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+            if (attendanceData[dateStr] === 'present') {
+                presentCount++;
+            } else if (attendanceData[dateStr] === 'absent') {
+                absentCount++;
+            }
+        }
+
+        presentDaysElement.textContent = `${presentCount} Days`;
+        absentDaysElement.textContent = `${absentCount} Days`;
+
+        // Update today's status (you might want to fetch this from the server)
+        const todayFormatted = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`;
+        if (attendanceData[todayFormatted]) {
+            todaysAttendanceStatus.textContent = attendanceData[todayFormatted].charAt(0).toUpperCase() + attendanceData[todayFormatted].slice(1);
+            checkInOutButton.textContent = attendanceData[todayFormatted] === 'present' ? 'Check Out' : 'Check In';
+        } else {
+            todaysAttendanceStatus.textContent = 'Not Checked In';
+            checkInOutButton.textContent = 'Check In';
+        }
+
+        // Update company holidays (replace with your actual data)
+        const holidays = [
+            { date: '2025-04-10', name: 'Ram Navami' },
+            { date: '2025-04-14', name: 'Bengali New Year' }
+        ];
+        companyHolidaysList.innerHTML = holidays.map(holiday => `<li>${holiday.date} - ${holiday.name}</li>`).join('');
+    }
+
+    function renderCalendar(month, year) {
+        const firstDayOfMonth = new Date(year, month, 1);
+        const lastDayOfMonth = new Date(year, month + 1, 0);
+        const daysInMonth = lastDayOfMonth.getDate();
+        const firstDayOfWeek = firstDayOfMonth.getDay(); // 0 for Sunday, 6 for Saturday
+
+        const date = new Date();
+        const today = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+        currentMonthYear.textContent = new Date(year, month).toLocaleString('default', { month: 'long', year: 'numeric' });
+
+        let calendarHTML = '';
+        let dayCounter = 1;
+
+        for (let i = 0; i < 6; i++) { // Up to 6 weeks
+            let row = '<tr>';
+            for (let j = 0; j < 7; j++) { // 7 days in a week
+                if (i === 0 && j < firstDayOfWeek) {
+                    const prevMonthLastDay = new Date(year, month, 0).getDate();
+                    row += `<td class="other-month">${prevMonthLastDay - (firstDayOfWeek - j - 1)}</td>`;
+                } else if (dayCounter > daysInMonth) {
+                    row += `<td class="other-month">${dayCounter - daysInMonth}</td>`;
+                    dayCounter++;
+                } else {
+                    const currentDateFormatted = `${year}-${String(month + 1).padStart(2, '0')}-${String(dayCounter).padStart(2, '0')}`;
+                    let dayClass = '';
+                    if (currentDateFormatted === today) {
+                        dayClass = 'today';
+                    }
+
+                    const attendanceStatus = attendanceData[currentDateFormatted];
+                    let statusIndicator = '';
+                    if (attendanceStatus === 'present') {
+                        statusIndicator = '<div class="attendance-status present">P</div>';
+                    } else if (attendanceStatus === 'absent') {
+                        statusIndicator = '<div class="attendance-status absent">A</div>';
+                    } else if (attendanceStatus === 'leave') {
+                        statusIndicator = '<div class="attendance-status leave">L</div>';
+                    }
+
+                    row += `<td data-date="${currentDateFormatted}" class="${dayClass}">${dayCounter}${statusIndicator}</td>`;
+                    dayCounter++;
+                }
+            }
+            row += '</tr>';
+            calendarHTML += row;
+            if (dayCounter > daysInMonth && i >= 0) { // Break if all days are rendered
+                break;
+            }
+        }
+
+        calendarBody.innerHTML = calendarHTML;
+
+        // Add event listeners to the calendar cells after rendering
+        document.querySelectorAll('#calendarBody td').forEach(cell => {
+            if (!cell.classList.contains('other-month')) {
+                cell.addEventListener('click', function() {
+                    const dateClicked = this.getAttribute('data-date');
+                    if (dateClicked) {
+                        // Basic toggle through attendance statuses
+                        if (!attendanceData[dateClicked]) {
+                            attendanceData[dateClicked] = 'present';
+                        } else if (attendanceData[dateClicked] === 'present') {
+                            attendanceData[dateClicked] = 'absent';
+                        } else if (attendanceData[dateClicked] === 'absent') {
+                            attendanceData[dateClicked] = 'leave';
+                        } else if (attendanceData[dateClicked] === 'leave') {
+                            delete attendanceData[dateClicked]; // Reset
+                        }
+                        renderCalendar(currentMonth, currentYear); // Re-render to update the visual
+                        updateOverview();
+                        // In a real application, you would send this updated attendanceData to your backend
+                        console.log('Attendance Data:', attendanceData);
+                    }
+                });
+            }
+        });
+
+        updateOverview(); // Update the overview section after rendering the calendar
+    }
+
+    function prevMonth() {
+        currentMonth--;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        }
+        renderCalendar(currentMonth, currentYear);
+    }
+
+    function nextMonth() {
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        renderCalendar(currentMonth, currentYear);
+    }
+
+    prevMonthBtn.addEventListener('click', prevMonth);
+    nextMonthBtn.addEventListener('click', nextMonth);
+
+    checkInOutButton.addEventListener('click', function() {
+        const todayFormatted = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`;
+        if (todaysAttendanceStatus.textContent === 'Not Checked In' || todaysAttendanceStatus.textContent === 'Absent' || todaysAttendanceStatus.textContent === 'Leave') {
+            attendanceData[todayFormatted] = 'present';
+        } else if (todaysAttendanceStatus.textContent === 'Present') {
+            delete attendanceData[todayFormatted]; // Simulate check-out by removing status
+        }
+        renderCalendar(currentMonth, currentYear);
+        updateOverview();
+    });
+
+    // Initial calendar render
+    renderCalendar(currentMonth, currentYear);
+</script>
 <script src="../script.js"></script>
 </body>
 </html>
