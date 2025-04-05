@@ -1,0 +1,204 @@
+.payslip-list {
+    padding: 20px;
+}
+
+.payslip-list .card {
+    background-color: var(--bg-color-secondary);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+body.dark-mode .payslip-list .card {
+    background-color: #252729;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.payslip-list .card h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+body.dark-mode .payslip-list .card h3 {
+    color: var(--secondary-color);
+}
+
+.payslip-list .card h3 i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.task-list {
+    padding: 20px;
+}
+
+.task-list .card {
+    background-color: var(--bg-color-secondary);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    overflow-x: auto;
+}
+
+body.dark-mode .task-list .card {
+    background-color: #252729;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.task-list .card h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+body.dark-mode .task-list .card h3 {
+    color: var(--secondary-color);
+}
+
+.task-list .card h3 i {
+    font-size: 24px;
+}
+
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.task-table thead th {
+    background-color: var(--bg-color-primary);
+    color: var(--text-color-secondary);
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 2px solid var(--border-color);
+}
+
+body.dark-mode .task-table thead th {
+    background-color: #333;
+    color: #eee;
+    border-color: #555;
+}
+
+.task-table tbody td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+body.dark-mode .task-table tbody td {
+    border-color: #444;
+}
+
+.task-table tbody tr:nth-child(even) {
+    background-color: var(--bg-color-light);
+}
+
+body.dark-mode .task-table tbody tr:nth-child(even) {
+    background-color: #2c2c2c;
+}
+
+.task-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.task-table .button.small {
+    padding: 6px 10px;
+    font-size: 12px;
+    margin-right: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.top-bar-actions .user-profile .notification {
+    position: relative;
+    display: inline-block;
+}
+
+.top-bar-actions .user-profile .notification .fa-bell {
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.top-bar-actions .user-profile .notification .notification-card {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background-color: var(--bg-color-secondary);
+    color: var(--text-color-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    padding: 15px;
+    z-index: 1000;
+    width: 300px;
+    display: none;
+}
+
+body.dark-mode .top-bar-actions .user-profile .notification .notification-card {
+    background-color: #252729;
+    color: var(--text-color-secondary);
+    border-color: #444;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.top-bar-actions .user-profile .notification .notification-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+}
+
+body.dark-mode .top-bar-actions .user-profile .notification .notification-card h3 {
+    border-color: #444;
+}
+
+.top-bar-actions .user-profile .notification .notification-card .notification-item {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9em;
+}
+
+body.dark-mode .top-bar-actions .user-profile .notification .notification-card .notification-item {
+    border-color: #444;
+}
+
+.top-bar-actions .user-profile .notification .notification-card .notification-item:last-child {
+    border-bottom: none;
+}
+
+.top-bar-actions .user-profile .notification .notification-card .view-all {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.85em;
+}
+
+.top-bar-actions .user-profile .notification .notification-card .view-all:hover {
+    text-decoration: underline;
+}
+
+body.dark-mode .top-bar-actions .user-profile .notification .notification-card .view-all {
+    color: var(--secondary-color);
+}
+
+.show-notifications {
+    display: block !important;
+}
