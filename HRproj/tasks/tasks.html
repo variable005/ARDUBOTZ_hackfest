@@ -43,7 +43,16 @@
                         <i class="fa-solid fa-moon"></i>
                     </button>
                     <div class="user-profile">
-                        <span class="notification"><i class="fa-solid fa-bell"></i></span>
+                        <span class="notification">
+                            <i class="fa-solid fa-bell" id="notificationBell"></i>
+                            <div class="notification-card" id="notificationCard">
+                                <h3>Notifications</h3>
+                                <div class="notification-item">New task assigned to you</div>
+                                <div class="notification-item">Leave request approved</div>
+                                <div class="notification-item">Performance review due soon</div>
+                                <a href="#" class="view-all">View All Notifications</a>
+                            </div>
+                        </span>
                         <span class="avatar">HS</span>
                         <span class="username">Hariom Sharnam</span>
                     </div>
@@ -56,27 +65,27 @@
             <div class="card">
                 <h3><i class="fa-solid fa-plus"></i> Create New Task</h3>
                 <p>Create and assign new tasks to employees.</p>
-                <a href="#" class="learn-more">Add Task <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="add_tasks.html" class="learn-more">Add Task <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="card">
                 <h3><i class="fa-solid fa-list-check"></i> View All Tasks</h3>
                 <p>See a comprehensive list of all assigned tasks.</p>
-                <a href="#" class="learn-more">View Tasks <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="view_tasks.html" class="learn-more">View Tasks <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="card">
                 <h3><i class="fa-solid fa-calendar-alt"></i> Upcoming Deadlines</h3>
                 <p>Track tasks with approaching deadlines.</p>
-                <a href="#" class="learn-more">View Deadlines <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="deadline.html" class="learn-more">View Deadlines <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="card">
                 <h3><i class="fa-solid fa-check-double"></i> Completed Tasks</h3>
                 <p>Review a list of all completed tasks.</p>
-                <a href="#" class="learn-more">View Completed <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="comp_tasks.html" class="learn-more">View Completed <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </section>
 
         <section class="task-list">
-            <h3><i class="fa-solid fa-tasks"></i>Tasks</h3>
+            <h3><i class="fa-solid fa-tasks"></i> Tasks</h3>
             <table class="tasks-table">
                 <thead>
                 <tr>
