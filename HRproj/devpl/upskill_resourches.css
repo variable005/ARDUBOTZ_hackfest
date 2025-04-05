@@ -1,0 +1,108 @@
+.upskill-resources-list {
+    padding: 20px;
+}
+
+.upskill-resources-list .card {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+body.dark-mode .upskill-resources-list .card {
+    background-color: #2c2c2c;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.upskill-resources-list .card h3 {
+    margin-top: 0;
+    margin-right: 10px;
+}
+
+.upskill-resources-list .card h3 i {
+    margin-right: 10px;
+}
+
+.upskill-resources-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+body.dark-mode .upskill-resources-table {
+    border-color: #555;
+}
+
+.upskill-resources-table thead th {
+    background-color: #e0e0e0;
+    color: var(--text-color-secondary);
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+}
+
+.upskill-resources-table thead th:first-child {
+    border-left: 1px solid var(--border-color);
+}
+
+.upskill-resources-table thead th:last-child {
+    border-right: none;
+}
+
+body.dark-mode .upskill-resources-table thead th {
+    background-color: #444;
+    color: #eee;
+    border-color: #555;
+    border-right-color: #555;
+}
+
+.upskill-resources-table tbody td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+}
+
+.upskill-resources-table tbody td:first-child {
+    border-left: 1px solid var(--border-color);
+}
+
+.upskill-resources-table tbody td:last-child {
+    border-right: none;
+}
+
+body.dark-mode .upskill-resources-table tbody td {
+    border-color: #444;
+    border-right-color: #444;
+}
+
+.upskill-resources-table tbody tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+body.dark-mode .upskill-resources-table tbody tr:nth-child(even) {
+    background-color: #333;
+}
+
+.upskill-resources-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.upskill-resources-table tbody td a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.upskill-resources-table tbody td a:hover {
+    text-decoration: underline;
+}
+
+body.dark-mode .upskill-resources-table tbody td a {
+    color: var(--secondary-color);
+}
