@@ -82,14 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Firebase initialization
     const firebaseConfig = {
-        apiKey: "AIzaSyCZaXglLNz37Z5wGzPsbFOGuV7ubAw5tlY",
+        apiKey: "AIzaSyCZaXg1LNz37Z5wGzPsbF0GuV7ubAw5t1Y",
         authDomain: "trial1-d6513.firebaseapp.com",
         projectId: "trial1-d6513",
         storageBucket: "trial1-d6513.firebasestorage.app",
         messagingSenderId: "278281297726",
-        appId: "1:278281297726:web:dbdcbc985349cd6476966f"
+        appId: "1:278281297726:web:d08848e01fef9c0476966f"
     };
 
     if (!firebase.apps.length) {
@@ -97,30 +96,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.db = firebase.firestore();
 
-    const taskTableBody = document.getElementById('taskTableBody');
+    const employeeTableBody = document.getElementById('employeeTableBody');
 
     if (window.db) {
-        window.db.collection('tasks').get()
+        window.db.collection('employees').get()
             .then((querySnapshot) => {
                 let html = '';
                 querySnapshot.forEach((doc) => {
-                    const taskData = doc.data();
+                    const employeeData = doc.data();
                     html += '<tr>';
-                    html += `<td>${taskData.title}</td>`;
-                    html += `<td>${taskData.assignee}</td>`;
-                    html += `<td>${taskData.due_date}</td>`;
-                    html += `<td>${taskData.priority}</td>`;
-                    html += `<td>${taskData.status}</td>`;
+                    html += `<td>${employeeData.employee_name}</td>`;
+                    html += `<td>${employeeData.date_of_joining}</td>`;
+                    html += `<td>${employeeData.date_of_birth}</td>`;
+                    html += `<td>${employeeData.age || ''}</td>`;
+                    html += `<td>${employeeData.blood_group || ''}</td>`;
+                    html += `<td>${employeeData.email}</td>`;
+                    html += `<td>${employeeData.phone || ''}</td>`;
+                    html += `<td>${employeeData.designation}</td>`;
+                    html += `<td>${employeeData.department}</td>`;
                     html += '</tr>';
                 });
-                taskTableBody.innerHTML = html;
+                employeeTableBody.innerHTML = html;
             })
             .catch((error) => {
-                console.error('Error getting tasks: ', error);
-                taskTableBody.innerHTML = `<tr><td colspan="9">Error loading task data.</td></tr>`;
+                console.error('Error getting employees: ', error);
+                employeeTableBody.innerHTML = `<tr><td colspan="9">Error loading employee data.</td></tr>`;
             });
     } else {
         console.error('Firestore database not initialized.');
-        taskTableBody.innerHTML = `<tr><td colspan="9">Firestore database could not be initialized.</td></tr>`;
+        employeeTableBody.innerHTML = `<tr><td colspan="9">Firestore database could not be initialized.</td></tr>`;
     }
 });
