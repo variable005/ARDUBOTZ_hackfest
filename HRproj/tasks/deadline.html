@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Tasks</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="view_tasks.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="loaded">
+<div class="container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">floww</div>
+            <button class="toggle-btn" id="sidebarToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html"><i class="fa-solid fa-house"></i> <span class="nav-text">Home</span></a></li>
+                <li><a href="../empmgmt/employee-management.html"><i class="fa-solid fa-users"></i> <span class="nav-text">Employee Management</span></a></li>
+                <li class="active"><a href="tasks.html"><i class="fa-solid fa-list-check"></i> <span class="nav-text">Tasks</span></a></li>
+                <li><a href="../atten/attendence.html"><i class="fa-solid fa-calendar-days"></i> <span class="nav-text">Attendance</span></a></li>
+                <li><a href="../pay/pay.html"><i class="fa-solid fa-money-bill-wave"></i> <span class="nav-text">Payroll</span></a></li>
+                <li><a href="../perf/performance-reviews.html"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Performance Reviews</span></a></li>
+                <li><a href="../feedb/feedback.html"><i class="fa-solid fa-comments"></i> <span class="nav-text">Feedback</span></a></li>
+                <li><a href="../devpl/development-plans.html"><i class="fa-solid fa-graduation-cap"></i> <span class="nav-text">Development Plans</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header>
+            <div class="top-bar">
+                <div class="breadcrumb">HRMS / Tasks / Upcoming Deadlines</div>
+                <div class="top-bar-actions">
+                    <button id="darkModeToggle" class="dark-mode-toggle">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <div class="user-profile">
+                        <span class="notification">
+                            <i class="fa-solid fa-bell" id="notificationBell"></i>
+                            <div class="notification-card" id="notificationCard">
+                                <h3>Notifications</h3>
+                                <div class="notification-item">New task assigned to you</div>
+                                <div class="notification-item">Leave request approved</div>
+                                <div class="notification-item">Performance review due soon</div>
+                                <a href="#" class="view-all">View All Notifications</a>
+                            </div>
+                        </span>
+                        <span class="avatar">HS</span>
+                        <span class="username">Hariom Sharnam</span>
+                    </div>
+                </div>
+            </div>
+            <h2>Upcoming Deadlines</h2>
+        </header>
+
+        <section class="task-list">
+            <div class="card">
+                <h3><i class="fa-solid fa-exclamation-triangle"></i> Upcoming Tasks</h3>
+                <table class="task-table">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Assignee</th>
+                        <th>Due Date</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Prepare Q3 Sales Report</td>
+                        <td>Dani Chand</td>
+                        <td>2025-04-05</td>
+                        <td>High</td>
+                        <td>To Do</td>
+                        <td><button class="button small"><i class="fa-solid fa-eye"></i> View</button> <button class="button small"><i class="fa-solid fa-pen"></i> Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Review Website Analytics</td>
+                        <td>Ghasitaram</td>
+                        <td>2025-04-08</td>
+                        <td>Medium</td>
+                        <td>In Progress</td>
+                        <td><button class="button small"><i class="fa-solid fa-eye"></i> View</button> <button class="button small"><i class="fa-solid fa-pen"></i> Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Schedule Team Meeting</td>
+                        <td>Krishti Tiwari</td>
+                        <td>2025-04-10</td>
+                        <td>Medium</td>
+                        <td>To Do</td>
+                        <td><button class="button small"><i class="fa-solid fa-eye"></i> View</button> <button class="button small"><i class="fa-solid fa-pen"></i> Edit</button></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="../script.js"></script>
+</body>
+</html>
