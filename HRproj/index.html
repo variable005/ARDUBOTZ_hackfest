@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Performance & Feedback</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -114,6 +115,22 @@
             </div>
         </section>
     </main>
+</div>
+
+<div class="chatbot-container" id="chatbotContainer">
+    <div class="chat-header">
+        <h3>Chat with us!</h3>
+        <button id="chatbotToggleBtn" class="chatbot-toggle-btn">
+            <i class="fa-solid fa-chevron-up"></i>
+        </button>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+        <div class="message bot-message">Hello! How can I help you today?</div>
+    </div>
+    <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button id="send-button">Send</button>
+    </div>
 </div>
 
 <script src="script.js"></script>
